@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Curnomad is a personal currency converter that keeps four currencies in view, detects your local currency, and converts with live exchange rates.">
+  <meta name="theme-color" content="#F2EFE7">
+  <meta name="color-scheme" content="light">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Curnomad">
+  <link rel="manifest" href="/curnomad/assets/manifest-DjrWac9g.webmanifest">
+  <link rel="apple-touch-icon" href="/curnomad/assets/curnomad-app-Ch6CpxT0.png">
+  <link rel="icon" href="/curnomad/assets/curnomad-app-Ch6CpxT0.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/curnomad/assets/curnomad-app-Ch6CpxT0.png" type="image/png" sizes="192x192">
+  <link rel="shortcut icon" href="/curnomad/assets/curnomad-app-Ch6CpxT0.png">
+  <link rel="icon" href="/curnomad/assets/icon-DJJc6637.svg" type="image/svg+xml">
+  <title>Curnomad — Personal currency converter</title>
+  <script type="module" crossorigin src="/curnomad/assets/index-BnQzpdTM.js"></script>
+  <link rel="stylesheet" crossorigin href="/curnomad/assets/index-DJANnzOh.css">
+<script id="vite-plugin-pwa:register-sw" src="/curnomad/registerSW.js"></script></head>
+<body>
+  <a class="skip-link" href="#main">Skip to converter</a>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="cur$nomad home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M9.5 11.5h11.9l-3.1-3.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22.5 20.5H10.6l3.1 3.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">cur<span class="brand-dollar">$</span>nomad</span>
+      </a>
+
+      <div class="topbar-actions">
+        <span class="connection-pill" id="connectionPill" title="Rate connection status">
+          <span class="connection-dot" aria-hidden="true"></span>
+          <span id="connectionText">Live rates</span>
+        </span>
+        <button class="icon-button install-button" id="installButton" type="button" aria-label="Install Curnomad" hidden>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Install</span>
+        </button>
+        <div class="menu-wrapper">
+          <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Menu" aria-haspopup="menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="menu-dropdown" id="menuDropdown" role="menu" aria-labelledby="menuButton" hidden>
+            <button class="menu-item" id="menuAbout" type="button" role="menuitem">About the app</button>
+            <button class="menu-item" id="menuHomeSettings" type="button" role="menuitem">Set home location/timezone</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero-row">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Personal currency desk</p>
+            <h1 id="pageTitle">Every currency, <em>one glance.</em></h1>
+          </div>
+          <div class="rate-meta" id="rateMeta" aria-live="polite">
+            <span class="rate-meta-label">Exchange rates</span>
+            <span class="rate-meta-value" id="rateMetaValue">Connecting…</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="clocks" aria-labelledby="clocksTitle">
+        <h2 class="sr-only" id="clocksTitle">World time</h2>
+        <div class="clock-grid">
+          <article class="clock-card clock-card--clickable" id="homeClockCard" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Set home location and timezone">
+            <div class="clock-weather-visual" aria-hidden="true"></div>
+            <div class="clock-head">
+              <span class="clock-label">Home</span>
+              <span class="clock-sub" id="homeClockSub">—</span>
+            </div>
+            <div class="clock-time" id="homeClockTime">--:--</div>
+            <div class="clock-date" id="homeClockDate">—</div>
+          </article>
+          <article class="clock-card">
+            <div class="clock-weather-visual" aria-hidden="true"></div>
+            <div class="clock-head">
+              <span class="clock-label">Current</span>
+              <span class="clock-sub" id="currentClockSub">Not detected</span>
+            </div>
+            <div class="clock-time" id="currentClockTime">--:--</div>
+            <div class="clock-date" id="currentClockDate">—</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="board" aria-labelledby="boardTitle">
+        <div class="section-head board-head">
+          <div>
+            <p class="eyebrow">Conversion board</p>
+            <h2 id="boardTitle">Your currencies</h2>
+          </div>
+          <div class="board-tools">
+            <p class="section-caption">Base <strong id="baseLabel">USD</strong></p>
+            <button class="icon-button" id="refreshButton" type="button" aria-label="Refresh exchange rates" title="Refresh exchange rates">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 11a8 8 0 0 0-14.6-4.7L3 9m0 0V4m0 5h5M4 13a8 8 0 0 0 14.6 4.7L21 15m0 0v5m0-5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="locate-button locate-button--compact" id="locateButton" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s6.5-5.7 6.5-11a6.5 6.5 0 1 0-13 0C5.5 15.3 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <circle cx="12" cy="10" r="2.25" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+              <span id="locateButtonText">Use my location</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="currency-grid" id="currencyGrid"></div>
+
+        <p class="rate-note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M12 11v5m0-8.3v.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>Mid-market rates update daily. Your selections stay on this device.</span>
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Rates by <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a> · Location by <a href="https://www.bigdatacloud.com" target="_blank" rel="noopener noreferrer">BigDataCloud</a></p>
+      <p class="footer-offline"><span aria-hidden="true">●</span> Works offline · Installable</p>
+    </footer>
+  </div>
+
+  <dialog class="currency-dialog" id="currencyDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow" id="dialogEyebrow">Choose currency</p>
+          <h2 id="dialogTitle">Home currency</h2>
+        </div>
+        <button class="icon-button icon-button--round" id="closeDialog" type="button" aria-label="Close currency picker">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/>
+          <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <label class="sr-only" for="currencySearch">Search currencies</label>
+        <input id="currencySearch" type="search" placeholder="Search currency or code" autocomplete="off" spellcheck="false">
+        <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" hidden>
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="currency-content" id="currencyList" role="listbox" aria-label="Currencies"></div>
+    </div>
+  </dialog>
+
+  <dialog class="settings-dialog" id="aboutDialog" aria-labelledby="aboutDialogTitle">
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 id="aboutDialogTitle">Curnomad</h2>
+        </div>
+        <button class="icon-button icon-button--round" id="closeAboutDialog" type="button" aria-label="Close about dialog">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-content">
+        <p class="settings-section-title">Personal currency converter</p>
+        <p class="settings-text">Offline-capable PWA built with vanilla HTML, CSS, and JavaScript. Keeps four currencies in view with live mid-market rates.</p>
+        <p class="settings-text"><strong>Credits:</strong> Rates by <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a> · Location by <a href="https://www.bigdatacloud.com" target="_blank" rel="noopener noreferrer">BigDataCloud</a></p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="settings-dialog" id="homeSettingsDialog" aria-labelledby="homeSettingsTitle">
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">Home</p>
+          <h2 id="homeSettingsTitle">Set home location/timezone</h2>
+        </div>
+        <button class="icon-button icon-button--round" id="closeHomeSettingsDialog" type="button" aria-label="Close home settings dialog">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-content">
+        <div class="settings-field">
+          <label class="settings-label" for="homeCitySearch">Home city</label>
+          <div class="home-city-search">
+            <input
+              class="settings-input"
+              id="homeCitySearch"
+              type="search"
+              placeholder="Search a city, e.g. London"
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <div class="home-city-results" id="homeCityResults" role="listbox" aria-label="City results" hidden></div>
+          </div>
+          <p class="settings-help" id="homeLocationSummary">No city selected. The timezone below is used for the home clock.</p>
+        </div>
+        <div class="settings-field">
+          <label class="settings-label" for="homeTimezoneSelect">Timezone</label>
+          <select id="homeTimezoneSelect" class="settings-select"></select>
+        </div>
+        <label class="settings-check" id="homeCurrencyOption" hidden>
+          <input type="checkbox" id="setHomeCurrencyFromCity" checked>
+          <span id="setHomeCurrencyLabel">Also set home currency</span>
+        </label>
+        <div class="settings-actions">
+          <button class="settings-button" id="useCurrentLocationAsHome" type="button">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 21s6.5-5.7 6.5-11a6.5 6.5 0 1 0-13 0C5.5 15.3 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="2.25" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            Use my current location
+          </button>
+          <button class="settings-link" id="clearHomeOverride" type="button">Revert to currency-based timezone</button>
+        </div>
+      </div>
+      <div class="settings-footer">
+        <button class="settings-button" id="cancelHomeSettings" type="button">Cancel</button>
+        <button class="settings-button settings-button--primary" id="saveHomeSettings" type="button">OK</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-atomic="false"></div>
+  <div class="offline-banner" id="offlineBanner" hidden>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 3l18 18M8.6 8.6a10 10 0 0 1 12.3 1.5M5.1 10.1a10 10 0 0 0 2.17 1.4M8.5 15.5a5 5 0 0 1 5.6 1M12 19h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>You're offline — showing your last saved rates.</span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "id": "./",
+  "name": "Curnomad — Personal Currency Converter",
+  "short_name": "Curnomad",
+  "description": "A personal currency converter with four editable currencies, automatic local currency detection, live rates, and home/local clocks.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#F2EFE7",
+  "theme_color": "#F2EFE7",
+  "categories": ["finance", "travel", "utilities"],
+  "icons": [
+    {
+      "src": "./assets/curnomad-app.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open converter",
+      "short_name": "Convert",
+      "description": "Open your personal currency board",
+      "url": "./",
+      "icons": [
+        {
+          "src": "./assets/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

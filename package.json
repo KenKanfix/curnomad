@@ -1,0 +1,21 @@
+{
+  "name": "curnomad-currency-converter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A personal, installable currency converter PWA with live rates and location-aware currency detection.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server.js",
+    "check": "node --check app.js && node --check sw.js && node --check server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "app.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
