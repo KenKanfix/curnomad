@@ -14,15 +14,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --include=dev
         env:
           NODE_ENV: development
 
       - name: Build
-        run: npm run build
+        run: npx --yes vite@8.3.5 build
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
