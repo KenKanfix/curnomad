@@ -251,3 +251,7 @@ There is no explicit home-city setting. The home clock currently uses a represen
 - Hero rate meta moved inline, shifted up.
 - Server CSP updated for Open-Meteo.
 - Service worker bumped to curnomad-v1.1.14.
+2 0 2 6 - 1 0 - 2 5   1 1 : 1 4 : 0 3  
+ - - -  
+ S e s s i o n   s u m m a r y :   c o n v e r t e d   C u r n o m a d   t o   V i t e ,   a d d e d   P W A   s e t u p ,   b u m p e d   t o   v 0 . 1 ,   a d d e d   A b o u t / p r i v a c y / t e r m s ,   d e p l o y e d   v i a   g h - p a g e s   t o   k e n k a n f i x . g i t h u b . i o / c u r n o m a d /   ( p r o j e c t   s i t e )   a n d   a d d e d   w o r k f l o w   f o r   c e n t r a l   u s e r   p a g e s   r e p o   w i t h   d e p l o y   k e y s .  
+ 
