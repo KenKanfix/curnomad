@@ -18,7 +18,7 @@ jobs:
 
       - run: npm ci --include=dev
 
-      - run: npx --yes vite build
+      - run: npm run build
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
