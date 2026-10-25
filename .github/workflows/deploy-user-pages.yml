@@ -13,12 +13,16 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
-      - run: npm ci --include=dev
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_ENV: development
 
-      - run: npm run build
+      - name: Build
+        run: npm run build
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
