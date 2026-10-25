@@ -1,0 +1,2 @@
+import { precacheAndRoute } from 'workbox-precaching';
+precacheAndRoute([{"revision":"aab9a8f39ac87d1b9aa7cfa918b99f3b","url":"sw.js"},{"revision":"962389f84799540fc26dfc8296a5fb19","url":"registerSW.js"},{"revision":"46ecec034e12141bdb64205e7dab2a74","url":"index.html"},{"revision":null,"url":"assets/manifest-DjrWac9g.webmanifest"},{"revision":null,"url":"assets/index-DJANnzOh.css"},{"revision":null,"url":"assets/index-BnQzpdTM.js"},{"revision":null,"url":"assets/icon-DJJc6637.svg"},{"revision":null,"url":"assets/curnomad-app-Ch6CpxT0.png"}] || []);
