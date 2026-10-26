@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server.js",
-    "check": "node --check app.js && node --check sw.js && node --check server.js",
+    "check": "node --check app.js && node --check sw.js && node --check public/sw.js && node --check server.js",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "engines": {
