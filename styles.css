@@ -688,6 +688,57 @@ main {
   color: #8f968b;
 }
 
+.currency-power {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  margin: 2px 0 0;
+  color: var(--muted-soft);
+  font-size: 0.64rem;
+  font-weight: 650;
+  letter-spacing: 0.015em;
+  line-height: 1.25;
+}
+
+.currency-card--home .currency-power {
+  color: #8f968b;
+}
+
+.currency-power-sockets {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.socket-icon {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+.socket-icon .socket-plate {
+  fill: currentColor;
+  fill-opacity: 0.09;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.socket-icon .socket-holes {
+  fill: currentColor;
+}
+
+.currency-power-spec {
+  white-space: nowrap;
+}
+
+.currency-power-more {
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
 .currency-trigger {
   display: inline-flex;
   align-items: center;

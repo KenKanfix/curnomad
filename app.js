@@ -80,6 +80,272 @@ const CURRENCY_COUNTRY_LABELS = {
   XPF: "French Pacific",
 };
 
+const COUNTRY_POWER = {
+  AD: { v: "230", hz: "50", p: ["C", "F"] },
+  AE: { v: "220", hz: "50", p: ["C", "D", "G"] },
+  AF: { v: "220", hz: "50", p: ["C", "F"] },
+  AG: { v: "230", hz: "60", p: ["A", "B"] },
+  AI: { v: "110", hz: "60", p: ["A"] },
+  AL: { v: "230", hz: "50", p: ["C", "F"] },
+  AM: { v: "230", hz: "50", p: ["C", "F"] },
+  AO: { v: "220", hz: "50", p: ["C"] },
+  AR: { v: "220", hz: "50", p: ["C", "I"] },
+  AS: { v: "120", hz: "60", p: ["A", "B", "F", "I"] },
+  AT: { v: "230", hz: "50", p: ["C", "F"] },
+  AU: { v: "230", hz: "50", p: ["I"] },
+  AW: { v: "127", hz: "60", p: ["A", "B", "F"] },
+  AX: { v: "230", hz: "50", p: ["C", "F"] },
+  AZ: { v: "220", hz: "50", p: ["C", "F"] },
+  BA: { v: "230", hz: "50", p: ["C", "F"] },
+  BB: { v: "115", hz: "50", p: ["A", "B"] },
+  BD: { v: "220", hz: "50", p: ["C", "D", "G", "K"] },
+  BE: { v: "230", hz: "50", p: ["C", "E"] },
+  BF: { v: "220", hz: "50", p: ["C", "E"] },
+  BG: { v: "230", hz: "50", p: ["C", "F"] },
+  BH: { v: "230", hz: "50", p: ["G"] },
+  BI: { v: "220", hz: "50", p: ["C", "E"] },
+  BJ: { v: "220", hz: "50", p: ["C", "E"] },
+  BL: { v: "230", hz: "60", p: ["C", "E"] },
+  BM: { v: "120", hz: "60", p: ["A", "B"] },
+  BN: { v: "240", hz: "50", p: ["G"] },
+  BO: { v: "115/230", hz: "50", p: ["A", "C"] },
+  BQ: { v: "110/127", hz: "50/60", p: ["A", "B", "C", "F"] },
+  BR: { v: "127/220", hz: "60", p: ["C", "N"] },
+  BS: { v: "120", hz: "60", p: ["A", "B"] },
+  BT: { v: "230", hz: "50", p: ["C", "D", "F", "G", "M"] },
+  BW: { v: "230", hz: "50", p: ["D", "G", "M"] },
+  BY: { v: "220", hz: "50", p: ["C", "F"] },
+  BZ: { v: "110/220", hz: "60", p: ["A", "B", "G"] },
+  CA: { v: "120", hz: "60", p: ["A", "B"] },
+  CC: { v: "230", hz: "50", p: ["I"] },
+  CD: { v: "220", hz: "50", p: ["C", "D", "E"] },
+  CF: { v: "220", hz: "50", p: ["C", "E"] },
+  CG: { v: "230", hz: "50", p: ["C", "E"] },
+  CH: { v: "230", hz: "50", p: ["C", "J"] },
+  CI: { v: "230", hz: "50", p: ["C", "E"] },
+  CK: { v: "240", hz: "50", p: ["I"] },
+  CL: { v: "220", hz: "50", p: ["C", "L"] },
+  CM: { v: "220", hz: "50", p: ["C", "E"] },
+  CN: { v: "220", hz: "50", p: ["A", "C", "I"] },
+  CO: { v: "110", hz: "60", p: ["A", "B"] },
+  CR: { v: "120", hz: "60", p: ["A", "B"] },
+  CU: { v: "110", hz: "60", p: ["A", "B"] },
+  CV: { v: "220", hz: "50", p: ["C", "F"] },
+  CW: { v: "127/220", hz: "50", p: ["A", "B", "C", "F"] },
+  CX: { v: "230", hz: "50", p: ["I"] },
+  CY: { v: "240", hz: "50", p: ["G"] },
+  CZ: { v: "230", hz: "50", p: ["C", "E"] },
+  DE: { v: "230", hz: "50", p: ["C", "F"] },
+  DJ: { v: "220", hz: "50", p: ["C", "E"] },
+  DK: { v: "230", hz: "50", p: ["C", "E", "F", "K"] },
+  DM: { v: "230", hz: "50", p: ["D", "G"] },
+  DO: { v: "110", hz: "60", p: ["A", "B"] },
+  DZ: { v: "230", hz: "50", p: ["C", "F"] },
+  EC: { v: "120", hz: "60", p: ["A", "B"] },
+  EE: { v: "230", hz: "50", p: ["C", "F"] },
+  EG: { v: "220", hz: "50", p: ["C", "F"] },
+  EH: { v: "230", hz: "50", p: ["C", "E"] },
+  ER: { v: "230", hz: "50", p: ["C", "L"] },
+  ES: { v: "230", hz: "50", p: ["C", "F"] },
+  ET: { v: "220", hz: "50", p: ["C", "E", "F", "L"] },
+  EU: { v: "230", hz: "50", p: ["C", "E", "F"] },
+  FI: { v: "230", hz: "50", p: ["C", "F"] },
+  FJ: { v: "240", hz: "50", p: ["I"] },
+  FK: { v: "240", hz: "50", p: ["G"] },
+  FM: { v: "120", hz: "60", p: ["A", "B"] },
+  FO: { v: "230", hz: "50", p: ["C", "E", "F", "K"] },
+  FR: { v: "230", hz: "50", p: ["C", "E"] },
+  GA: { v: "220", hz: "50", p: ["C"] },
+  GB: { v: "230", hz: "50", p: ["G"] },
+  GD: { v: "230", hz: "50", p: ["G"] },
+  GE: { v: "220", hz: "50", p: ["C", "F"] },
+  GF: { v: "220", hz: "50", p: ["C", "D", "E"] },
+  GG: { v: "230", hz: "50", p: ["G"] },
+  GH: { v: "230", hz: "50", p: ["D", "G"] },
+  GI: { v: "240", hz: "50", p: ["C", "G"] },
+  GL: { v: "230", hz: "50", p: ["C", "E", "F", "K"] },
+  GM: { v: "230", hz: "50", p: ["G"] },
+  GN: { v: "220", hz: "50", p: ["C", "F", "K"] },
+  GP: { v: "230", hz: "50", p: ["C", "D", "E"] },
+  GQ: { v: "220", hz: "50", p: ["C", "E"] },
+  GR: { v: "230", hz: "50", p: ["C", "F"] },
+  GS: { v: "230", hz: "50", p: ["G"] },
+  GT: { v: "120", hz: "60", p: ["A", "B"] },
+  GU: { v: "110", hz: "60", p: ["A", "B"] },
+  GW: { v: "220", hz: "50", p: ["C"] },
+  GY: { v: "240", hz: "60", p: ["A", "B", "D", "G"] },
+  HK: { v: "220", hz: "50", p: ["D", "G"] },
+  HN: { v: "110", hz: "60", p: ["A", "B"] },
+  HR: { v: "230", hz: "50", p: ["C", "F"] },
+  HT: { v: "110", hz: "60", p: ["A", "B"] },
+  HU: { v: "230", hz: "50", p: ["C", "F"] },
+  ID: { v: "110/220", hz: "50", p: ["C", "F"] },
+  IE: { v: "230", hz: "50", p: ["G"] },
+  IL: { v: "230", hz: "50", p: ["C", "H", "M"] },
+  IM: { v: "240", hz: "50", p: ["C", "G"] },
+  IN: { v: "230", hz: "50", p: ["C", "D", "M"] },
+  IO: { v: "230", hz: "50", p: ["G"] },
+  IQ: { v: "230", hz: "50", p: ["C", "D", "G"] },
+  IR: { v: "220", hz: "50", p: ["C", "F"] },
+  IS: { v: "230", hz: "50", p: ["C", "F"] },
+  IT: { v: "230", hz: "50", p: ["C", "F", "L"] },
+  JE: { v: "230", hz: "50", p: ["G"] },
+  JM: { v: "110", hz: "50", p: ["A", "B"] },
+  JO: { v: "230", hz: "50", p: ["B", "C", "D", "F", "G", "J"] },
+  JP: { v: "100", hz: "50/60", p: ["A", "B"] },
+  KE: { v: "240", hz: "50", p: ["G"] },
+  KG: { v: "220", hz: "50", p: ["C", "F"] },
+  KH: { v: "230", hz: "50", p: ["A", "C", "G"] },
+  KI: { v: "240", hz: "50", p: ["I"] },
+  KM: { v: "220", hz: "50", p: ["C", "E"] },
+  KN: { v: "230", hz: "60", p: ["A", "B", "D", "G"] },
+  KP: { v: "110/220", hz: "50/60", p: ["A", "C", "F"] },
+  KR: { v: "220", hz: "60", p: ["C", "F"] },
+  KW: { v: "240", hz: "50", p: ["C", "G"] },
+  KY: { v: "120", hz: "60", p: ["A", "B"] },
+  KZ: { v: "220", hz: "50", p: ["C", "F"] },
+  LA: { v: "230", hz: "50", p: ["A", "B", "C", "E", "F"] },
+  LB: { v: "220", hz: "50", p: ["A", "B", "C", "D", "G"] },
+  LC: { v: "240", hz: "50", p: ["G"] },
+  LI: { v: "230", hz: "50", p: ["C", "J"] },
+  LK: { v: "230", hz: "50", p: ["D", "G", "M"] },
+  LR: { v: "120/220", hz: "50/60", p: ["A", "B", "C", "E", "F"] },
+  LS: { v: "220", hz: "50", p: ["M"] },
+  LT: { v: "220", hz: "50", p: ["C", "F"] },
+  LU: { v: "230", hz: "50", p: ["C", "F"] },
+  LV: { v: "230", hz: "50", p: ["C", "F"] },
+  LY: { v: "127/230", hz: "50", p: ["C", "D", "F", "L"] },
+  MA: { v: "127/220", hz: "50", p: ["C", "E"] },
+  MC: { v: "230", hz: "50", p: ["C", "D", "E", "F"] },
+  MD: { v: "220", hz: "50", p: ["C", "F"] },
+  ME: { v: "230", hz: "50", p: ["C", "F"] },
+  MF: { v: "120/220", hz: "60", p: ["C", "F"] },
+  MG: { v: "127/220", hz: "50", p: ["C", "D", "E", "J", "K"] },
+  MH: { v: "120", hz: "60", p: ["A", "B"] },
+  MK: { v: "230", hz: "50", p: ["C", "F"] },
+  ML: { v: "220", hz: "50", p: ["C", "E"] },
+  MM: { v: "230", hz: "50", p: ["C", "D", "F", "G"] },
+  MN: { v: "220", hz: "50", p: ["C", "E"] },
+  MO: { v: "220", hz: "50", p: ["D", "F", "G", "M"] },
+  MP: { v: "120", hz: "60", p: ["A", "B"] },
+  MQ: { v: "220", hz: "50", p: ["C", "D", "E"] },
+  MR: { v: "220", hz: "50", p: ["C"] },
+  MS: { v: "230", hz: "60", p: ["A", "B"] },
+  MT: { v: "230", hz: "50", p: ["G"] },
+  MU: { v: "230", hz: "50", p: ["C", "G"] },
+  MV: { v: "230", hz: "50", p: ["A", "C", "D", "G", "J", "K", "L"] },
+  MW: { v: "230", hz: "50", p: ["G"] },
+  MX: { v: "127", hz: "60", p: ["A", "B"] },
+  MY: { v: "240", hz: "50", p: ["A", "C", "G", "M"] },
+  MZ: { v: "220", hz: "50", p: ["C", "F", "M"] },
+  NA: { v: "220", hz: "50", p: ["D", "M"] },
+  NC: { v: "220", hz: "50", p: ["C", "F"] },
+  NE: { v: "220", hz: "50", p: ["A", "B", "C", "D", "E", "F"] },
+  NF: { v: "230", hz: "50", p: ["I"] },
+  NG: { v: "230", hz: "50", p: ["D", "G"] },
+  NI: { v: "120", hz: "60", p: ["A", "B"] },
+  NL: { v: "230", hz: "50", p: ["C", "F"] },
+  NO: { v: "230", hz: "50", p: ["C", "F"] },
+  NP: { v: "230", hz: "50", p: ["C", "D", "M"] },
+  NR: { v: "240", hz: "50", p: ["I"] },
+  NU: { v: "230", hz: "50", p: ["I"] },
+  NZ: { v: "230", hz: "50", p: ["I"] },
+  OM: { v: "240", hz: "50", p: ["C", "G"] },
+  PA: { v: "110", hz: "60", p: ["A", "B"] },
+  PE: { v: "220", hz: "60", p: ["A", "B", "C"] },
+  PF: { v: "230", hz: "60", p: ["C", "E"] },
+  PG: { v: "240", hz: "50", p: ["I"] },
+  PH: { v: "220", hz: "60", p: ["A", "B", "C"] },
+  PK: { v: "230", hz: "50", p: ["C", "D", "G", "M"] },
+  PL: { v: "230", hz: "50", p: ["C", "E"] },
+  PM: { v: "230", hz: "50", p: ["C", "E"] },
+  PN: { v: "230", hz: "50", p: ["I"] },
+  PR: { v: "120", hz: "60", p: ["A", "B"] },
+  PS: { v: "230", hz: "50", p: ["C", "H"] },
+  PT: { v: "230", hz: "50", p: ["C", "F"] },
+  PW: { v: "120", hz: "60", p: ["A", "B"] },
+  PY: { v: "220", hz: "50", p: ["C"] },
+  QA: { v: "240", hz: "50", p: ["D", "G"] },
+  RE: { v: "220", hz: "50", p: ["E"] },
+  RO: { v: "230", hz: "50", p: ["C", "F"] },
+  RS: { v: "230", hz: "50", p: ["C", "F"] },
+  RU: { v: "220", hz: "50", p: ["C", "F"] },
+  RW: { v: "230", hz: "50", p: ["C", "J"] },
+  SA: { v: "220/230", hz: "60", p: ["G"] },
+  SB: { v: "220", hz: "50", p: ["G", "I"] },
+  SC: { v: "240", hz: "50", p: ["G"] },
+  SD: { v: "230", hz: "50", p: ["C", "D"] },
+  SE: { v: "230", hz: "50", p: ["C", "F"] },
+  SG: { v: "230", hz: "50", p: ["C", "G", "M"] },
+  SH: { v: "230", hz: "50", p: ["G"] },
+  SI: { v: "230", hz: "50", p: ["C", "F"] },
+  SJ: { v: "230", hz: "50", p: ["C", "F"] },
+  SK: { v: "230", hz: "50", p: ["C", "E"] },
+  SL: { v: "230", hz: "50", p: ["D", "G"] },
+  SM: { v: "230", hz: "50", p: ["C", "F", "L"] },
+  SN: { v: "230", hz: "50", p: ["C", "D", "E", "K"] },
+  SO: { v: "220", hz: "50", p: ["C"] },
+  SR: { v: "127", hz: "60", p: ["C", "F"] },
+  SS: { v: "230", hz: "50", p: ["C", "D", "G"] },
+  ST: { v: "220", hz: "50", p: ["C", "F"] },
+  SV: { v: "115", hz: "60", p: ["A", "B"] },
+  SY: { v: "220", hz: "50", p: ["C", "E", "L"] },
+  SZ: { v: "230", hz: "50", p: ["M"] },
+  TC: { v: "120", hz: "60", p: ["A", "B"] },
+  TD: { v: "220", hz: "50", p: ["C", "D", "E", "F"] },
+  TG: { v: "220", hz: "50", p: ["C"] },
+  TH: { v: "220", hz: "50", p: ["A", "B", "C", "F"] },
+  TJ: { v: "220", hz: "50", p: ["C", "F", "I"] },
+  TK: { v: "230", hz: "50", p: ["I"] },
+  TL: { v: "220", hz: "50", p: ["C", "E", "F", "I"] },
+  TM: { v: "220", hz: "50", p: ["B", "C", "F"] },
+  TN: { v: "230", hz: "50", p: ["C", "E"] },
+  TO: { v: "240", hz: "50", p: ["I"] },
+  TR: { v: "220", hz: "50", p: ["C", "F"] },
+  TT: { v: "115", hz: "60", p: ["A", "B"] },
+  TV: { v: "220", hz: "50", p: ["I"] },
+  TW: { v: "110", hz: "60", p: ["A", "B"] },
+  TZ: { v: "230", hz: "50", p: ["D", "G"] },
+  UA: { v: "220", hz: "50", p: ["C", "F"] },
+  UG: { v: "240", hz: "50", p: ["G"] },
+  UM: { v: "120", hz: "60", p: ["A", "B"] },
+  US: { v: "120", hz: "60", p: ["A", "B"] },
+  UY: { v: "230", hz: "50", p: ["C", "F", "I", "L"] },
+  UZ: { v: "220", hz: "50", p: ["C", "I"] },
+  VA: { v: "230", hz: "50", p: ["C", "F", "L"] },
+  VC: { v: "230", hz: "50", p: ["A", "C", "E", "G", "I", "K"] },
+  VE: { v: "120", hz: "60", p: ["A", "B"] },
+  VG: { v: "110", hz: "60", p: ["A", "B"] },
+  VI: { v: "110", hz: "60", p: ["A", "B"] },
+  VN: { v: "220", hz: "50", p: ["A", "C", "F"] },
+  VU: { v: "220", hz: "50", p: ["C", "G", "I"] },
+  WF: { v: "230", hz: "50", p: ["C", "E"] },
+  WS: { v: "230", hz: "50", p: ["I"] },
+  XK: { v: "230", hz: "50", p: ["C", "F"] },
+  YE: { v: "230", hz: "50", p: ["A", "D", "G"] },
+  YT: { v: "230", hz: "50", p: ["C", "E"] },
+  ZA: { v: "230", hz: "50", p: ["C", "D", "M", "N"] },
+  ZM: { v: "230", hz: "50", p: ["C", "D", "G"] },
+  ZW: { v: "220", hz: "50", p: ["D", "G"] },
+};
+
+const SOCKET_SHAPES = {
+  A: '<rect x="15" y="16" width="4" height="15" rx="2"/><rect x="29" y="16" width="4" height="15" rx="2"/>',
+  B: '<rect x="15" y="13" width="4" height="15" rx="2"/><rect x="29" y="13" width="4" height="15" rx="2"/><circle cx="24" cy="34" r="2.6"/>',
+  C: '<circle cx="16" cy="24" r="3.4"/><circle cx="32" cy="24" r="3.4"/>',
+  D: '<circle cx="24" cy="15" r="3"/><circle cx="14" cy="30" r="3"/><circle cx="34" cy="30" r="3"/>',
+  E: '<circle cx="16" cy="26" r="3.2"/><circle cx="32" cy="26" r="3.2"/><rect x="22.5" y="8" width="3" height="7" rx="1.5"/>',
+  F: '<circle cx="16" cy="24" r="3.2"/><circle cx="32" cy="24" r="3.2"/><rect x="5" y="20" width="3" height="8" rx="1.5"/><rect x="40" y="20" width="3" height="8" rx="1.5"/>',
+  G: '<rect x="22.5" y="11" width="3" height="10" rx="1"/><rect x="13.5" y="29" width="3" height="10" rx="1"/><rect x="31.5" y="29" width="3" height="10" rx="1"/>',
+  H: '<circle cx="24" cy="14" r="2.7"/><circle cx="16" cy="29" r="2.7"/><circle cx="32" cy="29" r="2.7"/>',
+  I: '<rect x="12" y="15" width="3.5" height="12" rx="1.5" transform="rotate(-18 13.75 21)"/><rect x="32.5" y="15" width="3.5" height="12" rx="1.5" transform="rotate(18 34.25 21)"/><rect x="22.25" y="32" width="3.5" height="9" rx="1.5"/>',
+  J: '<circle cx="26" cy="13" r="2.7"/><circle cx="15" cy="28" r="2.7"/><circle cx="33" cy="28" r="2.7"/>',
+  K: '<circle cx="16" cy="21" r="3.2"/><circle cx="32" cy="21" r="3.2"/><rect x="22.5" y="31" width="3" height="7" rx="1.5"/>',
+  L: '<circle cx="14" cy="24" r="2.9"/><circle cx="24" cy="24" r="2.9"/><circle cx="34" cy="24" r="2.9"/>',
+  M: '<circle cx="24" cy="13" r="3.6"/><circle cx="13" cy="30" r="3.6"/><circle cx="35" cy="30" r="3.6"/>',
+  N: '<circle cx="24" cy="15" r="2.6"/><circle cx="16.5" cy="29" r="2.6"/><circle cx="31.5" cy="29" r="2.6"/>',
+};
+
 const DEFAULT_TARGETS = ["EUR", "GBP", "JPY"];
 
 const state = {
@@ -235,6 +501,7 @@ function init() {
   loadCachedRates();
   loadCachedWeather();
   normalizeSelections();
+  if (syncNearbyWithLocation()) persistState();
   bindEvents();
   renderAll();
   updateNetworkUI();
@@ -242,7 +509,7 @@ function init() {
   installPromptSetup();
 
   fetchRates({ initial: true }).then(() => {
-    if (!state.location && navigator.onLine) {
+    if (navigator.onLine) {
       detectLocation({ precise: false, silent: true });
     }
   });
@@ -340,7 +607,7 @@ function hydrateState() {
   }
 
   if (typeof saved?.amountRaw === "string" && saved.amountRaw.trim() !== "") {
-    state.amountRaw = saved.amountRaw.replace(/,/g, ".").replace(/[^\d.]/g, "");
+    state.amountRaw = sanitizeAmount(saved.amountRaw);
   }
 
   const savedTargets = Array.isArray(saved?.targets) ? saved.targets : [];
@@ -432,6 +699,24 @@ function fillMissingTargets() {
     target.currency = next || "USD";
     used.add(target.currency);
   });
+}
+
+function syncNearbyWithLocation() {
+  const localCurrency = normalizeCode(state.location?.localCurrency);
+  if (!localCurrency) return false;
+
+  const desired = localCurrency === state.home ? pickCurrencyFallback() : localCurrency;
+  if (!desired || desired === state.home) return false;
+  if (state.rates && !state.rates[desired]) return false;
+
+  const nearby = state.targets[0];
+  if (!nearby || nearby.currency === desired) return false;
+
+  const other = state.targets.find((target, index) => index !== 0 && target.currency === desired);
+  if (other) other.currency = nearby.currency;
+  nearby.currency = desired;
+  fillMissingTargets();
+  return true;
 }
 
 function availableCodePool() {
@@ -658,9 +943,12 @@ function handleCardInput(event) {
   if (!input || input.disabled) return;
 
   const slot = Number(input.dataset.amountInput);
+  const caret = input.selectionStart ?? input.value.length;
+  const cleaned = String(input.value).replace(/,/g, "").replace(/[^\d.]/g, "");
+  let significant = countSignificant(input.value, caret);
   const sanitized = sanitizeAmount(input.value);
-  if (sanitized !== input.value) {
-    input.value = sanitized;
+  if (sanitized === `0${cleaned}` && cleaned.startsWith(".")) {
+    significant += 1;
   }
 
   if (slot === 0) {
@@ -676,12 +964,19 @@ function handleCardInput(event) {
       : formatInputAmount(parsed / rate, state.home);
   }
 
+  const display = formatGroupedAmount(sanitized);
+  if (input.value !== display) {
+    input.value = display;
+    const position = positionForSignificant(display, significant);
+    input.setSelectionRange(position, position);
+  }
+
   updateCardAmounts(slot);
   persistState();
 }
 
 function sanitizeAmount(raw) {
-  let next = raw.replace(/,/g, ".").replace(/[^\d.]/g, "");
+  let next = String(raw).replace(/,/g, "").replace(/[^\d.]/g, "");
   const parts = next.split(".");
   if (parts.length > 2) {
     next = `${parts.shift()}.${parts.join("")}`;
@@ -1089,8 +1384,9 @@ function setHomeCurrency(code) {
   }
   state.home = code;
   deriveRatesForBase(code);
-  persistState();
+  syncNearbyWithLocation();
   fillMissingTargets();
+  persistState();
   renderAll();
   fetchRates({ force: true });
 }
@@ -1151,9 +1447,9 @@ function renderCards() {
     const pending = !ratesReady && state.loading;
     const canEdit = slot.isHome || Boolean(rate);
     const value = slot.isHome
-      ? state.amountRaw
+      ? formatGroupedAmount(state.amountRaw)
       : rate && amount !== null
-        ? formatInputAmount(amount * rate, code)
+        ? formatGroupedAmount(formatInputAmount(amount * rate, code))
         : "";
     const tag = slotTagMarkup(slot);
     const tagTitle = ` title="${escapeHTML(slotTitle(slot))}"`;
@@ -1199,6 +1495,7 @@ function renderCards() {
         </div>
         <div class="currency-card-foot">
           ${cardFootMarkup(slot, rate, pending)}
+          ${powerMarkup(slot)}
         </div>
       </article>
     `;
@@ -1255,13 +1552,15 @@ function updateCardAmounts(activeSlot) {
     if (slot === activeSlot) return;
 
     if (slot === 0) {
-      input.value = state.amountRaw;
+      input.value = formatGroupedAmount(state.amountRaw);
       return;
     }
 
     const code = state.targets[slot - 1]?.currency;
     const rate = ratesReady ? state.rates[code] : null;
-    input.value = rate && amount !== null ? formatInputAmount(amount * rate, code) : "";
+    input.value = rate && amount !== null
+      ? formatGroupedAmount(formatInputAmount(amount * rate, code))
+      : "";
   });
 }
 
@@ -1482,6 +1781,70 @@ function getCurrencyCountry(code) {
   return country;
 }
 
+function normalizeCountryCode(value) {
+  if (typeof value !== "string") return null;
+  const code = value.trim().toUpperCase();
+  return /^[A-Z]{2}$/.test(code) ? code : null;
+}
+
+function currencyCountryCode(code) {
+  return normalizeCountryCode(CURRENCY_COUNTRY_OVERRIDES[code] || CURRENCY_COUNTRY_CODES[code]);
+}
+
+function powerCountryForSlot(slot) {
+  if (slot.isNearby) {
+    return normalizeCountryCode(state.location?.countryCode) || currencyCountryCode(slot.code);
+  }
+  if (slot.isHome) {
+    return normalizeCountryCode(state.homeOverride?.countryCode) || currencyCountryCode(slot.code);
+  }
+  return currencyCountryCode(slot.code);
+}
+
+function countryNameForCode(code) {
+  try {
+    return regionDisplayNames?.of(code) || code;
+  } catch {
+    return code;
+  }
+}
+
+function powerLocationLabel(slot, countryCode) {
+  if (slot.isNearby) return countryNameForCode(countryCode);
+  if (slot.isHome) {
+    return state.homeOverride?.countryCode
+      ? countryNameForCode(countryCode)
+      : getCurrencyCountry(slot.code);
+  }
+  return getCurrencyCountry(slot.code);
+}
+
+function socketIconMarkup(type) {
+  const shape = SOCKET_SHAPES[type];
+  if (!shape) return "";
+  return `<svg class="socket-icon" viewBox="0 0 48 48" aria-hidden="true"><rect class="socket-plate" x="3" y="3" width="42" height="42" rx="10"/><g class="socket-holes">${shape}</g></svg>`;
+}
+
+function powerMarkup(slot) {
+  const countryCode = powerCountryForSlot(slot);
+  const info = countryCode ? COUNTRY_POWER[countryCode] : null;
+  if (!info) return "";
+
+  const visibleTypes = info.p.length <= 3 ? info.p : info.p.slice(0, 3);
+  const hiddenCount = info.p.length - visibleTypes.length;
+  const icons = visibleTypes.map(socketIconMarkup).join("");
+  const typeText = info.p.length === 1 ? `type ${info.p[0]} socket` : `type ${info.p.join(", ")} sockets`;
+  const label = `Typical mains power in ${powerLocationLabel(slot, countryCode)}: ${typeText} · ${info.v} V · ${info.hz} Hz`;
+  const more = hiddenCount ? `<span class="currency-power-more">+${hiddenCount}</span>` : "";
+
+  return `
+    <p class="currency-power" title="${escapeHTML(label)}">
+      <span class="currency-power-sockets" aria-hidden="true">${icons}${more}</span>
+      <span class="currency-power-spec" aria-hidden="true">${escapeHTML(info.p.join("/"))} · ${escapeHTML(info.v)} V · ${escapeHTML(info.hz)} Hz</span>
+      <span class="sr-only">${escapeHTML(label)}</span>
+    </p>`;
+}
+
 function getCurrencySymbol(code) {
   if (!code) return "•";
   if (symbolCache.has(code)) return symbolCache.get(code);
@@ -1549,6 +1912,29 @@ function formatInputAmount(value, code) {
   const fixed = value.toFixed(digits);
   if (!fixed.includes(".")) return fixed;
   return fixed.replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function formatGroupedAmount(raw) {
+  if (!raw) return "";
+  const [integerPart, fractionPart] = String(raw).split(".");
+  const grouped = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return fractionPart === undefined ? grouped : `${grouped}.${fractionPart}`;
+}
+
+function countSignificant(value, position) {
+  return value.slice(0, position).replace(/[^\d.]/g, "").length;
+}
+
+function positionForSignificant(value, count) {
+  if (count <= 0) return 0;
+  let seen = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    if (/[\d.]/.test(value[index])) {
+      seen += 1;
+      if (seen === count) return index + 1;
+    }
+  }
+  return value.length;
 }
 
 function formatRate(value) {
@@ -1878,8 +2264,9 @@ function applyCurrency(code) {
 
     state.home = code;
     deriveRatesForBase(code);
-    persistState();
+    syncNearbyWithLocation();
     fillMissingTargets();
+    persistState();
     closeDialog();
     renderAll();
     fetchRates({ force: true });
