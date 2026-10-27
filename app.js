@@ -2412,7 +2412,6 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       nearby.currency = currency;
     }
 
-    syncNearbyWithLocation();
     persistState();
     renderAll();
     fetchWeatherForLocations();
