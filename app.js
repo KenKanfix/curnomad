@@ -1,3 +1,10 @@
+import { Capacitor } from "@capacitor/core";
+import { Geolocation } from "@capacitor/geolocation";
+import { SplashScreen } from "@capacitor/splash-screen";
+import { StatusBar, Style } from "@capacitor/status-bar";
+
+const IS_NATIVE = Capacitor.isNativePlatform();
+
 const API_BASE = "https://open.er-api.com/v6/latest/";
 const GEO_API = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 const WEATHER_API = "https://api.open-meteo.com/v1/forecast";
@@ -505,6 +512,7 @@ function init() {
   bindEvents();
   renderAll();
   updateNetworkUI();
+  setupNativeShell();
   registerServiceWorker();
   installPromptSetup();
 
@@ -2327,10 +2335,10 @@ async function detectLocation({ precise = false, silent = false } = {}) {
   try {
     if (precise) {
       try {
-        if (!("geolocation" in navigator)) {
+        if (!IS_NATIVE && !("geolocation" in navigator)) {
           throw new Error("Geolocation is not supported");
         }
-        if (!window.isSecureContext) {
+        if (!IS_NATIVE && !window.isSecureContext) {
           throw new Error("Geolocation needs a secure connection");
         }
         const position = await getCurrentPosition();
@@ -2404,6 +2412,7 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       nearby.currency = currency;
     }
 
+    syncNearbyWithLocation();
     persistState();
     renderAll();
     fetchWeatherForLocations();
@@ -2435,7 +2444,19 @@ async function detectLocation({ precise = false, silent = false } = {}) {
   }
 }
 
-function getCurrentPosition() {
+async function getCurrentPosition() {
+  if (IS_NATIVE) {
+    const permissions = await Geolocation.requestPermissions();
+    if (permissions.location !== "granted" && permissions.coarseLocation !== "granted") {
+      throw new Error("Location permission was denied");
+    }
+    return Geolocation.getCurrentPosition({
+      enableHighAccuracy: false,
+      timeout: 10000,
+      maximumAge: 5 * 60 * 1000,
+    });
+  }
+
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, {
       enableHighAccuracy: false,
@@ -2513,7 +2534,22 @@ function handleTicker(force = false) {
   }
 }
 
+function setupNativeShell() {
+  if (!IS_NATIVE) return;
+
+  if (Capacitor.getPlatform() === "android") {
+    StatusBar.setBackgroundColor({ color: "#F2EFE7" }).catch(() => {});
+    StatusBar.setOverlaysWebView({ overlay: false }).catch(() => {});
+  }
+  StatusBar.setStyle({ style: Style.Dark }).catch(() => {});
+
+  window.setTimeout(() => {
+    SplashScreen.hide().catch(() => {});
+  }, 150);
+}
+
 function registerServiceWorker() {
+  if (IS_NATIVE) return;
   if (!("serviceWorker" in navigator) || location.protocol === "file:") return;
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
@@ -2521,9 +2557,10 @@ function registerServiceWorker() {
 }
 
 function installPromptSetup() {
-  if (window.matchMedia("(display-mode: standalone)").matches) {
+  if (IS_NATIVE || window.matchMedia("(display-mode: standalone)").matches) {
     els.installButton.hidden = true;
   }
+  if (IS_NATIVE) return;
 
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
