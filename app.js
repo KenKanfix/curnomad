@@ -508,7 +508,7 @@ function init() {
   loadCachedRates();
   loadCachedWeather();
   normalizeSelections();
-  if (syncNearbyWithLocation()) persistState();
+  // if (syncNearbyWithLocation()) persistState();
   bindEvents();
   renderAll();
   updateNetworkUI();
@@ -1391,9 +1391,9 @@ function setHomeCurrency(code) {
     matchingTarget.currency = oldHome;
   }
   state.home = code;
-  deriveRatesForBase(code);
-  syncNearbyWithLocation();
-  fillMissingTargets();
+    deriveRatesForBase(code);
+    // syncNearbyWithLocation();
+    fillMissingTargets();
   persistState();
   renderAll();
   fetchRates({ force: true });
@@ -2272,7 +2272,7 @@ function applyCurrency(code) {
 
     state.home = code;
     deriveRatesForBase(code);
-    syncNearbyWithLocation();
+  // syncNearbyWithLocation();
     fillMissingTargets();
     persistState();
     closeDialog();
