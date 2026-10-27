@@ -697,8 +697,8 @@ function guessHomeCurrency() {
 function fillMissingTargets() {
   const used = new Set([state.home]);
   state.targets.forEach((target, index) => {
-    if (target.currency && index === 0 && state.location?.localCurrency && target.currency === state.location.localCurrency) {
-      if (!used.has(target.currency)) used.add(target.currency);
+    if (index === 0 && state.location?.localCurrency) {
+      target.currency = null;
       return;
     }
     if (target.currency && target.currency !== state.home && !used.has(target.currency)) {
@@ -711,7 +711,11 @@ function fillMissingTargets() {
   state.targets.forEach((target, index) => {
     if (target.currency) return;
     if (index === 0 && state.location?.localCurrency) {
-      const lc = normalizeCode(state.location.localCurrency);
+      let lc = normalizeCode(state.location.localCurrency);
+      if (lc && lc === state.home) {
+        const fallback = pickCurrencyFallback();
+        if (fallback) lc = fallback;
+      }
       if (lc && (!state.rates || state.rates[lc]) && !used.has(lc)) {
         target.currency = lc;
         used.add(lc);
@@ -2484,14 +2488,15 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       }
     }
 
-    const nearby = state.targets[0];
-    if (nearby.currency !== nearbyCurrency) {
-      const other = state.targets.find((target, index) => {
-        return index !== 0 && target.currency === nearbyCurrency;
-      });
-      if (other) other.currency = nearby.currency;
-      nearby.currency = nearbyCurrency;
-    }
+  const nearby = state.targets[0];
+  if (nearby.currency !== nearbyCurrency) {
+    const other = state.targets.find((target, index) => {
+      return index !== 0 && target.currency === nearbyCurrency;
+    });
+    if (other) other.currency = nearby.currency;
+    nearby.currency = nearbyCurrency;
+  }
+  fillMissingTargets();
 
     persistState();
     renderAll();
