@@ -2488,15 +2488,17 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       }
     }
 
-  const nearby = state.targets[0];
-  if (nearby.currency !== nearbyCurrency) {
-    const other = state.targets.find((target, index) => {
-      return index !== 0 && target.currency === nearbyCurrency;
-    });
-    if (other) other.currency = nearby.currency;
-    nearby.currency = nearbyCurrency;
-  }
-  fillMissingTargets();
+    const nearby = state.targets[0];
+    if (nearby) {
+      const other = state.targets.find((target, index) => {
+        return index !== 0 && target.currency === nearbyCurrency;
+      });
+      if (other && other.currency === nearbyCurrency) {
+        other.currency = nearby.currency;
+      }
+      nearby.currency = nearbyCurrency;
+    }
+    fillMissingTargets();
 
     persistState();
     renderAll();
