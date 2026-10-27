@@ -1617,6 +1617,19 @@ main {
   .power-dialog-plug-svg {
     width: 88px;
     height: 88px;
+    color: var(--ink);
+  }
+
+  .power-dialog-plug-svg .socket-plate {
+    fill: currentColor;
+    fill-opacity: 0.09;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+  }
+
+  .power-dialog-plug-svg .socket-holes {
+    fill: currentColor;
   }
 
   .power-dialog-plug-label {
