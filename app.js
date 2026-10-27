@@ -713,8 +713,8 @@ function syncNearbyWithLocation() {
   const localCurrency = normalizeCode(state.location?.localCurrency);
   if (!localCurrency) return false;
 
-  const desired = localCurrency === state.home ? pickCurrencyFallback() : localCurrency;
-  if (!desired || desired === state.home) return false;
+  const desired = localCurrency;
+  if (!desired) return false;
   if (state.rates && !state.rates[desired]) return false;
 
   const nearby = state.targets[0];
