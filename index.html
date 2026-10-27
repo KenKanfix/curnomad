@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Curnomad v0.1 - Personal currency converter that keeps four currencies in view, detects your local currency, and converts with live exchange rates.">
+  <meta name="description" content="Curnomad v1.0 - Personal currency converter that keeps four currencies in view, detects your local currency, and converts with live exchange rates.">
   <meta name="theme-color" content="#F2EFE7">
   <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,12 +11,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Curnomad">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./assets/icon-180.png">
-  <link rel="icon" href="./assets/icon-192.png" type="image/png" sizes="192x192">
-  <link rel="shortcut icon" href="./assets/icon-192.png">
-  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icon-180.png?v=20251028">
+  <link rel="icon" href="./assets/icon-192.png?v=20251028" type="image/png" sizes="192x192">
+  <link rel="shortcut icon" href="./assets/icon-192.png?v=20251028">
+  <link rel="icon" href="./assets/icon.svg?v=20251028" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <title>Curnomad v0.1 - Personal currency converter</title>
+  <title>Curnomad v1.0 - Personal currency converter</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to converter</a>
@@ -25,10 +25,7 @@
     <header class="topbar">
       <a class="brand" href="./" aria-label="cur$nomad home">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none">
-            <path d="M9.5 11.5h11.9l-3.1-3.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22.5 20.5H10.6l3.1 3.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <img src="./assets/icon-192.png?v=20251028" alt="" style="width:25px;height:25px;border-radius:6px;display:block;">
         </span>
         <span class="brand-name">cur<span class="brand-dollar">$</span>nomad</span>
       </a>
@@ -174,7 +171,7 @@
       <div class="dialog-head">
         <div>
           <p class="eyebrow">About</p>
-          <h2 id="aboutDialogTitle">Curnomad v0.1</h2>
+          <h2 id="aboutDialogTitle">Curnomad v1.0</h2>
         </div>
         <button class="icon-button icon-button--round" id="closeAboutDialog" type="button" aria-label="Close about dialog">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -186,7 +183,8 @@
         <p class="settings-section-title">Personal currency converter</p>
         <p class="settings-text">Offline-capable PWA built with vanilla HTML, CSS, and JavaScript. Keeps four currencies in view with live mid-market rates.</p>
         <p class="settings-section-title">Privacy</p>
-        <p class="settings-text">This app does not collect, store, or share any personal data on our servers. Your preferences (selected currencies, home location/timezone) are stored locally on your device using <code>localStorage</code>. Location data is only used if you explicitly choose "Use my current location" and is sent directly to third-party services for reverse geocoding (BigDataCloud). Exchange rates are fetched from public APIs (ExchangeRate-API/Open ER API) with no personally identifiable information attached.</p>
+        <p class="settings-text">This app does not collect, store, or share any personal data on our servers. Your preferences (selected currencies, home location/timezone) are stored locally on your device using <code>localStorage</code>. On startup, the app may request an approximate location from BigDataCloud based on your IP address to select a nearby currency. If you choose "Use my current location", the app requests device location permission and sends coordinates to BigDataCloud for reverse geocoding; coordinates may also be sent to Open-Meteo for weather. Exchange rates are fetched from public APIs (ExchangeRate-API/Open ER API) with no personally identifiable information attached.</p>
+        <p class="settings-text"><a href="./privacy.html">Full privacy policy</a></p>
         <p class="settings-section-title">Terms of Use</p>
         <p class="settings-text">This app is provided "as is" for personal use. Rates are for informational purposes only and should not be used for trading or financial decisions. Use of third-party APIs is subject to their respective terms. You are responsible for compliance with local laws in your jurisdiction.</p>
         <p class="settings-text"><strong>Credits:</strong> Rates by <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a> • Location by <a href="https://www.bigdatacloud.com" target="_blank" rel="noopener noreferrer">BigDataCloud</a></p>
