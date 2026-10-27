@@ -1760,8 +1760,9 @@ function renderRateMeta() {
     title = "We couldn't load exchange rates";
   }
 
-  els.rateMetaValue.textContent = message;
-  els.rateMeta.title = title;
+  if (els.rateMeta) els.rateMeta.style.display = "none";
+  if (els.rateMetaValue) els.rateMetaValue.textContent = message;
+  if (els.rateMeta) els.rateMeta.title = title;
 }
 
 function updateNetworkUI() {
