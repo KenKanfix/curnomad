@@ -564,6 +564,12 @@ function cacheElements() {
   els.closeAboutDialog = document.getElementById("closeAboutDialog");
   els.homeSettingsDialog = document.getElementById("homeSettingsDialog");
   els.closeHomeSettingsDialog = document.getElementById("closeHomeSettingsDialog");
+  els.powerDialog = document.getElementById("powerDialog");
+  els.closePowerDialog = document.getElementById("closePowerDialog");
+  els.powerDialogTitle = document.getElementById("powerDialogTitle");
+  els.powerDialogLocation = document.getElementById("powerDialogLocation");
+  els.powerDialogPlugs = document.getElementById("powerDialogPlugs");
+  els.powerDialogSpecs = document.getElementById("powerDialogSpecs");
   els.homeTimezoneSelect = document.getElementById("homeTimezoneSelect");
   els.useCurrentLocationAsHome = document.getElementById("useCurrentLocationAsHome");
   els.clearHomeOverride = document.getElementById("clearHomeOverride");
@@ -826,6 +832,13 @@ function bindEvents() {
     });
   }
 
+  if (els.closePowerDialog && els.powerDialog) {
+    els.closePowerDialog.addEventListener("click", () => closePowerDialog());
+    els.powerDialog.addEventListener("click", (event) => {
+      if (event.target === els.powerDialog) closePowerDialog();
+    });
+  }
+
   if (els.useCurrentLocationAsHome) {
     els.useCurrentLocationAsHome.addEventListener("click", () => {
       useCurrentLocationAsHome();
@@ -893,6 +906,11 @@ function bindEvents() {
   els.currencyGrid.addEventListener("input", handleCardInput);
 
   els.currencyGrid.addEventListener("click", (event) => {
+    const powerButton = event.target.closest("[data-power-slot]");
+    if (powerButton) {
+      openPowerDialog(powerButton);
+      return;
+    }
     const button = event.target.closest("[data-pick-slot]");
     if (!button) return;
     const slot = Number(button.dataset.pickSlot);
@@ -1856,13 +1874,14 @@ function powerMarkup(slot) {
   const typeText = info.p.length === 1 ? `type ${info.p[0]} socket` : `type ${info.p.join(", ")} sockets`;
   const label = `Typical mains power in ${powerLocationLabel(slot, countryCode)}: ${typeText} · ${info.v} V · ${info.hz} Hz`;
   const more = hiddenCount ? `<span class="currency-power-more">+${hiddenCount}</span>` : "";
+  const allTypes = info.p.join(",");
 
   return `
-    <p class="currency-power" title="${escapeHTML(label)}">
+    <button class="currency-power" type="button" data-power-slot="${slot.index}" data-power-country="${escapeHTML(countryCode || "")}" data-power-types="${escapeHTML(allTypes)}" data-power-voltage="${escapeHTML(info.v)}" data-power-hz="${escapeHTML(info.hz)}" title="${escapeHTML(label)}" aria-label="Show power outlet details for ${escapeHTML(powerLocationLabel(slot, countryCode))}">
       <span class="currency-power-sockets" aria-hidden="true">${icons}${more}</span>
       <span class="currency-power-spec" aria-hidden="true">${escapeHTML(info.p.join("/"))} · ${escapeHTML(info.v)} V · ${escapeHTML(info.hz)} Hz</span>
       <span class="sr-only">${escapeHTML(label)}</span>
-    </p>`;
+    </button>`;
 }
 
 function getCurrencySymbol(code) {
@@ -2178,6 +2197,54 @@ function closeDialog() {
   }
 }
 
+function openPowerDialog(button) {
+  if (!els.powerDialog || !button) return;
+  const countryCode = button.dataset.powerCountry || "";
+  const typesStr = button.dataset.powerTypes || "";
+  const voltage = button.dataset.powerVoltage || "";
+  const hz = button.dataset.powerHz || "";
+  const types = typesStr.split(",").filter(Boolean);
+
+  if (els.powerDialogTitle) {
+    els.powerDialogTitle.textContent = countryCode ? `${countryNameForCode(countryCode)}` : "Outlets";
+  }
+  if (els.powerDialogLocation) {
+    els.powerDialogLocation.textContent = countryCode ? `Typical mains power in ${countryNameForCode(countryCode)}` : "Typical mains power";
+  }
+  if (els.powerDialogSpecs) {
+    els.powerDialogSpecs.textContent = voltage && hz ? `Voltage: ${voltage} V · Frequency: ${hz} Hz` : "";
+  }
+
+  if (els.powerDialogPlugs) {
+    if (!types.length) {
+      els.powerDialogPlugs.innerHTML = "";
+    } else {
+      els.powerDialogPlugs.innerHTML = types
+        .map((type) => {
+          const shape = SOCKET_SHAPES[type];
+          if (!shape) return "";
+          return `<div class="power-dialog-plug"><svg class="power-dialog-plug-svg" viewBox="0 0 48 48" aria-hidden="true"><rect class="socket-plate" x="3" y="3" width="42" height="42" rx="10"/><g class="socket-holes">${shape}</g></svg><div class="power-dialog-plug-label">Type ${type}</div></div>`;
+        })
+        .join("");
+    }
+  }
+
+  if (typeof els.powerDialog.showModal === "function") {
+    els.powerDialog.showModal();
+  } else {
+    els.powerDialog.setAttribute("open", "");
+  }
+}
+
+function closePowerDialog() {
+  if (!els.powerDialog) return;
+  if (els.powerDialog.open && typeof els.powerDialog.close === "function") {
+    els.powerDialog.close();
+  } else {
+    els.powerDialog.removeAttribute("open");
+  }
+}
+
 function renderCurrencyList() {
   if (!state.picker || !state.rates) return;
 
@@ -2407,13 +2474,22 @@ async function detectLocation({ precise = false, silent = false } = {}) {
         : (typeof data.longitude === "number" ? data.longitude : null),
     };
 
+    let nearbyCurrency = currency;
+    if (nearbyCurrency === state.home) {
+      const fallback = pickCurrencyFallback();
+      if (fallback) {
+        nearbyCurrency = fallback;
+        usedFallback = true;
+      }
+    }
+
     const nearby = state.targets[0];
-    if (nearby.currency !== currency) {
+    if (nearby.currency !== nearbyCurrency) {
       const other = state.targets.find((target, index) => {
-        return index !== 0 && target.currency === currency;
+        return index !== 0 && target.currency === nearbyCurrency;
       });
       if (other) other.currency = nearby.currency;
-      nearby.currency = currency;
+      nearby.currency = nearbyCurrency;
     }
 
     persistState();
