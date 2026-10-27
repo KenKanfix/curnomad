@@ -2375,14 +2375,6 @@ async function detectLocation({ precise = false, silent = false } = {}) {
 
     const localCurrency = currency;
     let usedFallback = false;
-    if (currency === state.home) {
-      const fallback = pickCurrencyFallback();
-      if (!fallback) {
-        throw new Error("No additional currencies are available");
-      }
-      currency = fallback;
-      usedFallback = true;
-    }
 
     state.location = {
       countryCode,
