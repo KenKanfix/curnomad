@@ -697,10 +697,6 @@ function guessHomeCurrency() {
 function fillMissingTargets() {
   const used = new Set([state.home]);
   state.targets.forEach((target, index) => {
-    if (index === 0 && state.location?.localCurrency) {
-      target.currency = null;
-      return;
-    }
     if (target.currency && target.currency !== state.home && !used.has(target.currency)) {
       used.add(target.currency);
     } else {
@@ -716,7 +712,11 @@ function fillMissingTargets() {
         const fallback = pickCurrencyFallback();
         if (fallback) lc = fallback;
       }
-      if (lc && (!state.rates || state.rates[lc]) && !used.has(lc)) {
+      if (lc && (!state.rates || state.rates[lc])) {
+        if (used.has(lc)) {
+          const other = state.targets.find((t, i) => i !== 0 && t.currency === lc);
+          if (other) other.currency = null;
+        }
         target.currency = lc;
         used.add(lc);
         return;
