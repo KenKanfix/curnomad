@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F2EFE7">
+  <title>Privacy Policy - Curnomad</title>
+  <style>
+    :root {
+      color: #171a18;
+      background: #f2efe7;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 20px 72px;
+    }
+
+    main {
+      width: min(720px, 100%);
+      margin: 0 auto;
+    }
+
+    a {
+      color: #2f5d2a;
+      text-underline-offset: 3px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      color: inherit;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 10px;
+      background: #131614;
+      color: #d9ff63;
+      font-size: 18px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 6vw, 3rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .updated {
+      margin: 0 0 32px;
+      color: #5c625d;
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      margin: 32px 0 8px;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    p,
+    li {
+      margin: 0 0 12px;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    .panel {
+      margin: 28px 0;
+      padding: 18px 20px;
+      border: 1px solid #d8d2c5;
+      border-radius: 14px;
+      background: #fbf9f3;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 36px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true">$</span>
+      <span>Curnomad</span>
+    </a>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Effective 26 October 2026</p>
+
+    <p>Curnomad is a personal currency converter. This policy explains what data the app uses, where it goes, and the choices you have.</p>
+
+    <div class="panel">
+      <p><strong>Short version:</strong> Curnomad has no account, no analytics, no advertising, and no tracking. Your preferences stay on your device. Location and weather requests go directly to the third-party services described below.</p>
+    </div>
+
+    <h2>Information stored on your device</h2>
+    <p>Curnomad stores your selected currencies, home location and timezone, cached exchange rates, and cached weather data in your device's local storage. This information is not sent to a Curnomad server. Removing the app or clearing its data deletes it.</p>
+
+    <h2>Location</h2>
+    <p>On startup, Curnomad may ask BigDataCloud for an approximate location based on your network request so it can select a nearby currency. This request includes your IP address, which is processed by BigDataCloud.</p>
+    <p>If you choose <strong>Use my current location</strong>, the app asks for device location permission and sends the coordinates to BigDataCloud for reverse geocoding. Coordinates may also be sent to Open-Meteo to show weather for your location. Curnomad does not store your coordinates on a server.</p>
+    <p>You can deny or revoke location permission at any time in your device settings. The rest of the app continues to work with your saved currencies.</p>
+
+    <h2>Exchange rates and weather</h2>
+    <p>Exchange rates are requested from ExchangeRate-API (Open ER API). Weather is requested from Open-Meteo. These requests do not contain your name, email address, or account information. As with any web request, the service providers receive standard technical information such as your IP address and request headers.</p>
+
+    <h2>Third-party services</h2>
+    <ul>
+      <li><a href="https://www.exchangerate-api.com/privacy" target="_blank" rel="noopener noreferrer">ExchangeRate-API privacy policy</a></li>
+      <li><a href="https://www.bigdatacloud.com/privacy" target="_blank" rel="noopener noreferrer">BigDataCloud privacy policy</a></li>
+      <li><a href="https://open-meteo.com/en/privacy" target="_blank" rel="noopener noreferrer">Open-Meteo privacy policy</a></li>
+    </ul>
+
+    <h2>What Curnomad does not do</h2>
+    <ul>
+      <li>It does not create an account or ask for your name or email address.</li>
+      <li>It does not include advertising, analytics, or cross-app tracking.</li>
+      <li>It does not sell personal data or share it for advertising.</li>
+      <li>It does not access your contacts, photos, microphone, or camera.</li>
+    </ul>
+
+    <h2>Children</h2>
+    <p>Curnomad is not directed to children under 13. It does not knowingly collect personal information from children.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the updated version will be published on this page with a new effective date.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or requests about this policy can be sent through the <a href="https://github.com/KenKanfix/curnomad/issues" target="_blank" rel="noopener noreferrer">Curnomad issue tracker</a>.</p>
+
+    <a class="back" href="./">Back to Curnomad</a>
+  </main>
+</body>
+</html>

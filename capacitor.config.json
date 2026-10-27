@@ -1,0 +1,25 @@
+{
+  "appId": "io.github.kenkanfix.curnomad",
+  "appName": "Curnomad",
+  "webDir": "dist-native",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "launchAutoHide": false,
+      "backgroundColor": "#F2EFE7",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#F2EFE7",
+      "overlaysWebView": false
+    }
+  }
+}

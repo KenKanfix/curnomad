@@ -251,7 +251,76 @@ There is no explicit home-city setting. The home clock currently uses a represen
 - Hero rate meta moved inline, shifted up.
 - Server CSP updated for Open-Meteo.
 - Service worker bumped to curnomad-v1.1.14.
-2 0 2 6 - 1 0 - 2 5   1 1 : 1 4 : 0 3  
- - - -  
- S e s s i o n   s u m m a r y :   c o n v e r t e d   C u r n o m a d   t o   V i t e ,   a d d e d   P W A   s e t u p ,   b u m p e d   t o   v 0 . 1 ,   a d d e d   A b o u t / p r i v a c y / t e r m s ,   d e p l o y e d   v i a   g h - p a g e s   t o   k e n k a n f i x . g i t h u b . i o / c u r n o m a d /   ( p r o j e c t   s i t e )   a n d   a d d e d   w o r k f l o w   f o r   c e n t r a l   u s e r   p a g e s   r e p o   w i t h   d e p l o y   k e y s .  
- 
+
+## Session 2026-10-25 11:14:03
+
+Session summary: converted Curnomad to Vite, added PWA setup, bumped to v0.1, added About/privacy/terms, deployed via gh-pages to kenkanfix.github.io/curnomad/ (project site) and added workflow for central user pages repo with deploy keys.
+
+## Session 2026-10-26 - Native Packaging and Store Prep
+
+Project: `C:\Users\tj2ng\My-Repo\CurNomad`
+Status: Android release artifacts are signed and store assets are prepared locally. The iOS project and CI workflow are prepared but have not been built or signed. No commits or pushes; `main` remains at `f6c722c`.
+
+### Completed
+
+- Added Capacitor Android/iOS projects, native app config, native status-bar/splash handling, geolocation support, icons/splash assets, manifest permissions, and version metadata.
+- Native identity: `io.github.kenkanfix.curnomad`; version `1.0.0`; Android `versionCode 1`; iOS `CURRENT_PROJECT_VERSION 1`; Android minSdk `24`, targetSdk `36`; iOS device family iPhone + iPad.
+- Added Android upload signing with `android/keystore/curnomad-upload.jks`, alias `curnomad`. Credentials are in ignored `android/keystore/keystore-password.txt` and `android/keystore.properties`; do not commit or print them.
+- Updated in-app privacy text to disclose the startup IP-based BigDataCloud lookup, optional device location, and Open-Meteo weather. Updated the web and iOS public privacy policy.
+- Fixed the offline banner so `[hidden]` actually hides it: `.offline-banner[hidden] { display: none; }`.
+- Rebuilt `dist` and `dist-native`; `npm run check`, the web build, native build, and `npx cap sync` passed.
+- Rebuilt and copied signed Android artifacts:
+  - `store/builds/Curnomad-1.0.0-release.aab` - 3,897,887 bytes; SHA256 `7DBB55C7FF63DA25ECF7D59D8A542C7F2F165BF091F01C5216D175281059FF10`.
+  - `store/builds/Curnomad-1.0.0-release.apk` - 4,190,691 bytes; SHA256 `C445FB60804C9C0DEAE5167F79E511CD4A4500E72BB46B9CB6CD267759560BA8`.
+- APK verified with `apksigner`: signer `CN=Curnomad, O=KenKanfix, C=AU`; certificate SHA256 `88b6620d999fcf9a9abeb1506b049803a46b6072e0efb6f4b619dd441c0e3cbf`.
+- AAB verified with normal `jarsigner -verify`: `jar verified.`, exit `0`. Self-signed/no-timestamp warnings are expected for the upload key.
+- Confirmed the packaged APK/AAB contain the offline-banner CSS fix and updated privacy text.
+- Added shared iOS scheme `ios/App/App.xcodeproj/xcshareddata/xcschemes/App.xcscheme`.
+- Added `.github/workflows/ios.yml` for `macos-15`: Node 24, `npm ci`, `npm run build:native`, `npx cap sync ios`, Swift package resolution, and Xcode archive. Unsigned archive by default; optional signed IPA/App Store Connect upload when secrets exist.
+- iOS workflow secrets expected: `IOS_CERTIFICATE_P12`, `IOS_CERTIFICATE_PASSWORD`, `IOS_PROVISIONING_PROFILE`, `IOS_TEAM_ID`, `APPSTORE_ISSUER_ID`, `APPSTORE_KEY_ID`, `APPSTORE_PRIVATE_KEY`.
+- YAML syntax validated; workflow not run because this machine is Windows.
+- Created `store/listing.json` with Play/App Store metadata, data-safety/privacy labels, review notes, and screenshot mappings. JSON validates.
+- Metadata lengths are within limits: Play title 28, short description 75, full description 1166; App Store name 8, subtitle 28, promotional text 145, keywords 83, description 1166.
+- Generated final RGB store screenshots from `dist-native`:
+  - `store/screenshots/iphone-6.9.png` - 1320x2868.
+  - `store/screenshots/ipad-13.png` - 2064x2752.
+  - `store/screenshots/android-phone.png` - 1080x1920.
+  - `store/screenshots/android-phone-2.png` - 1080x1920 (currency picker).
+  - `store/screenshots/android-tablet-10.png` - 1600x2560.
+- Play phone list now has two screenshots; temporary test screenshots were removed.
+- Capture check confirmed the offline banner was hidden and all four currency cards rendered. The install button was hidden in captures to match the native shell.
+- `npm audit` still reports dev-dependency issues: 4 moderate, 4 high, 1 critical. Not addressed.
+
+### Android build note
+
+Gradle was unstable under Windows antivirus file locks. The successful approach was:
+
+```powershell
+$env:GRADLE_USER_HOME = "C:\Users\tj2ng\AppData\Local\Temp\opencode\gradle-home"
+$env:GRADLE_OPTS = "-Dorg.gradle.vfs.watch=false -Dorg.gradle.daemon=false"
+.\gradlew.bat bundleRelease assembleRelease --no-daemon --max-workers=1 --no-parallel
+```
+
+If antivirus causes `AccessDenied` during transform/cache writes, delete `caches\8.14.3\transforms` and retry. Passing `-Dorg.gradle...` directly on the PowerShell command line was misparsed; use `GRADLE_OPTS`.
+
+### Resume and verification
+
+- Run web checks: `npm run check`.
+- Build native assets: `npm run build:native`.
+- Sync native projects: `npx cap sync`.
+- Serve screenshots: `python -m http.server 4173 --directory dist-native`.
+- Re-verify APK certificate: `apksigner verify --print-certs store/builds/Curnomad-1.0.0-release.apk`.
+- Re-verify AAB: `jarsigner -verify store/builds/Curnomad-1.0.0-release.aab`.
+- Android SDK: `C:\Users\tj2ng\AppData\Local\Android\Sdk`; Java 21 Temurin.
+- Screenshot tooling: `playwright-core` in `C:\Users\tj2ng\AppData\Local\Temp\opencode\pw`; Edge at `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`.
+
+### Remaining work
+
+- Review `git status`; commit/push only with explicit approval.
+- Run the iOS workflow on macOS/GitHub Actions. Validate the unsigned archive first, then configure Apple signing secrets for a signed IPA.
+- Upload the AAB/APK, listing metadata, and screenshots to Google Play/App Store Connect.
+- Optionally address `npm audit` findings.
+
+### Housekeeping
+
+- Repaired the corrupted UTF-16LE text at the end of the previous session entry so this history file remains readable.

@@ -3,3 +3,6 @@ node_modules
 .env*
 curnomad_deploy_key
 curnomad_deploy_key.pub
+dist-native
+android/keystore/
+android/keystore.properties

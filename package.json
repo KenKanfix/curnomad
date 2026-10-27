@@ -1,14 +1,20 @@
 {
   "name": "curnomad-currency-converter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "A personal, installable currency converter PWA with live rates and location-aware currency detection.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:native": "vite build --mode capacitor",
     "preview": "vite preview",
     "start": "node server.js",
     "check": "node --check app.js && node --check sw.js && node --check public/sw.js && node --check server.js",
+    "cap:sync": "npm run build:native && cap sync",
+    "assets:generate": "node scripts/generate-assets.mjs && capacitor-assets generate --android --ios",
+    "cap:assets": "capacitor-assets generate --android --ios",
+    "android:bundle": "npm run cap:sync && cd android && gradlew.bat bundleRelease",
+    "android:apk": "npm run cap:sync && cd android && gradlew.bat assembleRelease",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "engines": {
@@ -20,10 +26,18 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/geolocation": "8.2.4",
+    "@capacitor/ios": "8.5.3",
+    "@capacitor/splash-screen": "8.0.2",
+    "@capacitor/status-bar": "8.0.4",
     "vite": "^5.4.21",
     "vite-plugin-pwa": "^0.21.2"
   },
   "devDependencies": {
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "8.5.3",
     "gh-pages": "^6.3.0"
   }
 }
