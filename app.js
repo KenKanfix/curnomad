@@ -2488,17 +2488,34 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       }
     }
 
-    const nearby = state.targets[0];
-    if (nearby) {
-      const other = state.targets.find((target, index) => {
-        return index !== 0 && target.currency === nearbyCurrency;
-      });
-      if (other && other.currency === nearbyCurrency) {
-        other.currency = nearby.currency;
-      }
-      nearby.currency = nearbyCurrency;
+    if (Array.isArray(state.targets) && state.targets[0]) {
+      state.targets[0].currency = nearbyCurrency;
     }
-    state.location.localCurrency = nearbyCurrency;
+    if (!Array.isArray(state.targets)) state.targets = [];
+    while (state.targets.length < 3) state.targets.push({ currency: null });
+    state.targets[0] = { currency: nearbyCurrency };
+    if (state.location) {
+      state.location.localCurrency = nearbyCurrency;
+    } else {
+      state.location = {
+        countryCode: countryCode,
+        countryName: String(data.countryName || countryCode),
+        city: String(data.city || data.locality || data.principalSubdivision || ""),
+        localCurrency: nearbyCurrency,
+        timezone: timezoneFromGeo(data)
+          || COUNTRY_TO_TZ[countryCode]
+          || CURRENCY_TIMEZONES[nearbyCurrency]
+          || null,
+        source,
+        detectedAt: new Date().toISOString(),
+        lat: typeof data._pos?.coords?.latitude === "number"
+          ? data._pos.coords.latitude
+          : (typeof data.latitude === "number" ? data.latitude : null),
+        lon: typeof data._pos?.coords?.longitude === "number"
+          ? data._pos.coords.longitude
+          : (typeof data.longitude === "number" ? data.longitude : null),
+      };
+    }
     fillMissingTargets();
     if (state.targets[0]) {
       state.targets[0].currency = nearbyCurrency;
