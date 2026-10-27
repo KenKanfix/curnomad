@@ -690,7 +690,11 @@ function guessHomeCurrency() {
 
 function fillMissingTargets() {
   const used = new Set([state.home]);
-  state.targets.forEach((target) => {
+  state.targets.forEach((target, index) => {
+    if (target.currency && index === 0 && state.location?.localCurrency && target.currency === state.location.localCurrency) {
+      if (!used.has(target.currency)) used.add(target.currency);
+      return;
+    }
     if (target.currency && target.currency !== state.home && !used.has(target.currency)) {
       used.add(target.currency);
     } else {
@@ -698,8 +702,16 @@ function fillMissingTargets() {
     }
   });
 
-  state.targets.forEach((target) => {
+  state.targets.forEach((target, index) => {
     if (target.currency) return;
+    if (index === 0 && state.location?.localCurrency) {
+      const lc = normalizeCode(state.location.localCurrency);
+      if (lc && (!state.rates || state.rates[lc]) && !used.has(lc)) {
+        target.currency = lc;
+        used.add(lc);
+        return;
+      }
+    }
     const pool = availableCodePool();
     const next = [...DEFAULT_TARGETS, ...POPULAR, ...pool].find(
       (code) => code && !used.has(code) && (state.rates ? Boolean(state.rates[code]) : true),
