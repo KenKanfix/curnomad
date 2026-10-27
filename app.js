@@ -2498,7 +2498,11 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       }
       nearby.currency = nearbyCurrency;
     }
+    state.location.localCurrency = nearbyCurrency;
     fillMissingTargets();
+    if (state.targets[0]) {
+      state.targets[0].currency = nearbyCurrency;
+    }
 
     persistState();
     renderAll();
