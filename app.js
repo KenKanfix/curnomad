@@ -810,6 +810,12 @@ function bindEvents() {
     }
   });
 
+  if (els.setHomeLocationButton) {
+    els.setHomeLocationButton.addEventListener("click", () => {
+      openHomeSettingsDialog();
+    });
+  }
+
   if (els.homeClockCard) {
     els.homeClockCard.addEventListener("click", () => {
       openHomeSettingsDialog();
@@ -920,7 +926,7 @@ function bindEvents() {
     const slot = Number(button.dataset.pickSlot);
     if (!Number.isInteger(slot)) return;
     if (slot === 0) {
-      openPicker({ type: "home" });
+      return;
     } else {
       openPicker({ type: "target", index: slot - 1 });
     }
