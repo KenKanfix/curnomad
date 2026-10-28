@@ -556,6 +556,7 @@ function cacheElements() {
     els[id] = document.getElementById(id);
   });
   els.menuButton = document.getElementById("menuButton");
+  els.setHomeLocationButton = document.getElementById("setHomeLocationButton");
   els.menuDropdown = document.getElementById("menuDropdown");
   els.menuAbout = document.getElementById("menuAbout");
   els.menuHomeSettings = document.getElementById("menuHomeSettings");
