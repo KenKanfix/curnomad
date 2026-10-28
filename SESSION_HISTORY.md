@@ -324,3 +324,37 @@ If antivirus causes `AccessDenied` during transform/cache writes, delete `caches
 ### Housekeeping
 
 - Repaired the corrupted UTF-16LE text at the end of the previous session entry so this history file remains readable.
+
+## Session 2026-10-29 - Home Currency Lock and Nearby Slot Fix
+
+Project: `C:\Users\tj2ng\My-Repo\CurNomad`
+Status: Changes committed and pushed to `origin/main`; GitHub Pages deploy workflow triggered by each push.
+
+### Completed
+
+- Locked the home currency card (slot 0): tapping its currency code no longer opens the currency picker (`app.js` grid click handler returns early for slot 0). The amount input stays editable.
+- Added a "Set home location" button (`#setHomeLocationButton`) next to "Use my location" in the board tools (`index.html`). It opens the existing home settings dialog (`openHomeSettingsDialog`).
+- Fixed the button not working: the element was not registered in `cacheElements()`, so `els.setHomeLocationButton` was undefined and the click listener was never attached. Added the lookup in `cacheElements`.
+- Removed the always-EUR nearby fallback. When the current country matches the home country, slot 1 now shows the actual local currency (which duplicates the home currency) instead of `pickCurrencyFallback()` always returning EUR.
+  - `detectLocation`: dropped fallback logic; `location.localCurrency` and `targets[0]` now store the true local currency; toast says the country uses the home currency.
+  - `fillMissingTargets`: slot 0 (nearby target) may now equal the home currency; other targets still must be distinct.
+  - `cardFootMarkup`: nearby slot equal to home shows "Same as your home currency / Detected local currency".
+  - `renderCards` and `updateCardAmounts`/`handleCardInput`: treat nearby-equals-home as rate 1 so the card stays editable and converts correctly.
+  - Removed the now-unused `pickCurrencyFallback()`.
+
+### Commits
+
+- `1f984c6` Add set home location button and lock home currency
+- `77ddfc1` Fix set home location button element lookup
+- `5f4d979` Show actual local currency in nearby slot when in home country
+
+### Verification
+
+- `npm run check` passed before each push.
+- Deploy workflow (`Deploy to GitHub Pages`) runs on push to `main`.
+- Service worker uses stale-while-revalidate for hashed assets and network-first for `index.html`; hard refresh (Ctrl+Shift+R) may be needed to see changes.
+
+### Notes
+
+- The home currency picker still exists in code (`applyCurrency` with `type: "home"`) but is no longer reachable from the home card.
+- Slot 1 remains user-editable, but location detection re-forces it to the local currency on startup/update.
