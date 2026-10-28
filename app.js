@@ -698,23 +698,25 @@ function guessHomeCurrency() {
 function fillMissingTargets() {
   const used = new Set([state.home]);
   state.targets.forEach((target, index) => {
-    if (target.currency && target.currency !== state.home && !used.has(target.currency)) {
-      used.add(target.currency);
-    } else {
+    const code = target.currency;
+    if (!code) {
       target.currency = null;
+      return;
     }
+    if (index === 0 && code === state.home) return;
+    if (code !== state.home && !used.has(code)) {
+      used.add(code);
+      return;
+    }
+    target.currency = null;
   });
 
   state.targets.forEach((target, index) => {
     if (target.currency) return;
     if (index === 0 && state.location?.localCurrency) {
-      let lc = normalizeCode(state.location.localCurrency);
-      if (lc && lc === state.home) {
-        const fallback = pickCurrencyFallback();
-        if (fallback) lc = fallback;
-      }
+      const lc = normalizeCode(state.location.localCurrency);
       if (lc && (!state.rates || state.rates[lc])) {
-        if (used.has(lc)) {
+        if (lc !== state.home && used.has(lc)) {
           const other = state.targets.find((t, i) => i !== 0 && t.currency === lc);
           if (other) other.currency = null;
         }
@@ -1004,7 +1006,7 @@ function handleCardInput(event) {
     state.amountRaw = sanitized;
   } else {
     const target = state.targets[slot - 1];
-    const rate = state.rates?.[target?.currency];
+    const rate = target?.currency === state.home ? 1 : state.rates?.[target?.currency];
     if (!target || !rate || !isRateReady()) return;
 
     const parsed = sanitized.trim() === "" ? null : Number.parseFloat(sanitized);
@@ -1492,9 +1494,10 @@ function renderCards() {
     const code = slot.code;
     const name = getCurrencyName(code);
     const symbol = getCurrencySymbol(code);
-    const rate = slot.isHome ? 1 : ratesReady ? state.rates[code] : null;
+    const sameAsHome = slot.isHome || (slot.isNearby && code === state.home);
+    const rate = sameAsHome ? 1 : ratesReady ? state.rates[code] : null;
     const pending = !ratesReady && state.loading;
-    const canEdit = slot.isHome || Boolean(rate);
+    const canEdit = sameAsHome || Boolean(rate);
     const value = slot.isHome
       ? formatGroupedAmount(state.amountRaw)
       : rate && amount !== null
@@ -1585,6 +1588,10 @@ function cardFootMarkup(slot, rate, pending) {
     return `<p class="rate-line">Base currency · <strong>${escapeHTML(state.home)}</strong></p>
       <p class="inverse-rate">Edits sync all cards</p>`;
   }
+  if (slot.isNearby && slot.code === state.home) {
+    return `<p class="rate-line">Same as your home currency</p>
+      <p class="inverse-rate">Detected local currency</p>`;
+  }
   if (!rate) {
     return `<p class="rate-line"><span class="rate-pending">${pending ? "Fetching rate…" : "Rate unavailable"}</span></p>`;
   }
@@ -1606,7 +1613,7 @@ function updateCardAmounts(activeSlot) {
     }
 
     const code = state.targets[slot - 1]?.currency;
-    const rate = ratesReady ? state.rates[code] : null;
+    const rate = code === state.home ? 1 : ratesReady ? state.rates[code] : null;
     input.value = rate && amount !== null
       ? formatGroupedAmount(formatInputAmount(amount * rate, code))
       : "";
@@ -2465,15 +2472,7 @@ async function detectLocation({ precise = false, silent = false } = {}) {
     }
 
     const localCurrency = currency;
-    let usedFallback = false;
-    let nearbyCurrency = currency;
-    if (nearbyCurrency === state.home) {
-      const fallback = pickCurrencyFallback();
-      if (fallback) {
-        nearbyCurrency = fallback;
-        usedFallback = true;
-      }
-    }
+    const nearbyCurrency = currency;
 
     if (!Array.isArray(state.targets)) state.targets = [];
     while (state.targets.length < 3) state.targets.push({ currency: null });
@@ -2511,13 +2510,13 @@ async function detectLocation({ precise = false, silent = false } = {}) {
       if (preciseError) {
         showToast("Precise location unavailable — using an approximate location.", "info");
       }
-      if (usedFallback) {
+      const place = locationShort();
+      if (nearbyCurrency === state.home) {
         showToast(
-          `${state.location.countryName} uses your home currency. Nearby set to ${currency}.`,
+          `${state.location.countryName} uses your home currency (${currency})${place ? ` · ${place}` : ""}.`,
           "info",
         );
       } else {
-        const place = locationShort();
         showToast(`Local currency set to ${currency}${place ? ` · ${place}` : ""}.`, "success");
       }
     }
@@ -2571,14 +2570,6 @@ async function fetchJson(url) {
   } finally {
     window.clearTimeout(timeout);
   }
-}
-
-function pickCurrencyFallback() {
-  const candidates = ["EUR", "GBP", "USD", "AUD", "CAD", "CHF", "JPY", "SGD", "CNY"];
-  const pool = state.rates ? Object.keys(state.rates) : candidates;
-  return candidates
-    .concat(pool)
-    .find((code) => code !== state.home && (!state.rates || state.rates[code]));
 }
 
 function showToast(message, type = "success") {
