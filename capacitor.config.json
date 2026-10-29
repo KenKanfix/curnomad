@@ -1,6 +1,6 @@
 {
-  "appId": "io.github.kenkanfix.curnomad",
-  "appName": "Curnomad",
+  "appId": "io.github.kenkanfix.dasnomad",
+  "appName": "Dasnomad",
   "webDir": "dist-native",
   "server": {
     "androidScheme": "https"

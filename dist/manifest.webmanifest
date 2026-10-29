@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "Curnomad — Personal Currency Converter",
-  "short_name": "Curnomad",
+  "name": "Dasnomad — Personal Currency Converter",
+  "short_name": "Dasnomad",
   "description": "A personal currency converter with four editable currencies, automatic local currency detection, live rates, and home/local clocks.",
   "lang": "en",
   "dir": "ltr",

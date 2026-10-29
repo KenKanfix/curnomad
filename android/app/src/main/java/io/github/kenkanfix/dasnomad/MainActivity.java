@@ -1,4 +1,4 @@
-package io.github.kenkanfix.curnomad;
+package io.github.kenkanfix.dasnomad;
 
 import com.getcapacitor.BridgeActivity;
 

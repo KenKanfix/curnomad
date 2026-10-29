@@ -2655,7 +2655,7 @@ function installPromptSetup() {
     const choice = await state.installPrompt.userChoice;
     if (choice.outcome === "accepted") {
       els.installButton.hidden = true;
-      showToast("Curnomad was added to your device.", "success");
+      showToast("Da$Nomad was added to your device.", "success");
     }
     state.installPrompt = null;
   });
@@ -2663,7 +2663,7 @@ function installPromptSetup() {
   window.addEventListener("appinstalled", () => {
     state.installPrompt = null;
     els.installButton.hidden = true;
-    showToast("Curnomad installed. It now works offline.", "success");
+    showToast("Da$Nomad installed. It now works offline.", "success");
   });
 }
 

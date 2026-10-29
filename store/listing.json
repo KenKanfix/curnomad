@@ -1,22 +1,22 @@
 {
   "app": {
-    "name": "Curnomad",
-    "bundleId": "io.github.kenkanfix.curnomad",
+    "name": "Dasnomad",
+    "bundleId": "io.github.kenkanfix.dasnomad",
     "version": "1.0.0",
     "build": 1,
     "primaryLanguage": "en-US",
     "category": "Finance",
     "secondaryCategory": "Travel",
     "ageRating": "4+",
-    "privacyPolicyUrl": "https://kenkanfix.github.io/curnomad/privacy.html",
-    "supportUrl": "https://github.com/KenKanfix/curnomad/issues",
-    "marketingUrl": "https://kenkanfix.github.io/curnomad/",
+    "privacyPolicyUrl": "https://kenkanfix.github.io/dasnomad/privacy.html",
+    "supportUrl": "https://github.com/KenKanfix/dasnomad/issues",
+    "marketingUrl": "https://kenkanfix.github.io/dasnomad/",
     "reviewNotes": "No account or sign-in is required. Location permission is optional and only used to detect the local currency and show local weather. Denying it leaves the converter fully usable."
   },
   "googlePlay": {
-    "title": "Curnomad: Currency Converter",
+    "title": "Dasnomad: Currency Converter",
     "shortDescription": "Offline-friendly currency converter with live rates and location detection.",
-    "fullDescription": "Curnomad is a calm, travel-friendly currency converter that keeps four currencies in view at once.\n\nLIVE MID-MARKET RATES\nSee daily mid-market exchange rates from ExchangeRate-API with no markup. Refresh whenever you need an update, and keep your last saved rates available when you're offline.\n\nFOUR CURRENCIES, ONE BOARD\nEnter any amount and every card updates instantly. Set a home currency, add the currencies you actually use, and keep your selections on your device.\n\nLOCAL CURRENCY DETECTION\nCurnomad can detect your approximate location on startup, or use your device location when you tap \"Use my location\", to suggest the local currency and show local time and weather. Location is optional and can be denied at any time.\n\nMADE FOR TRAVEL\nHome and current-location clocks, typical mains power information, weather, and a compact layout make it easy to check what you need at a glance.\n\nPRIVATE BY DESIGN\nNo account, no ads, no analytics, no tracking. Your preferences stay on your device. See the privacy policy for details about the third-party rate, location, and weather services.\n\nRates are for informational purposes only and are not financial advice.",
+    "fullDescription": "Dasnomad is a calm, travel-friendly currency converter that keeps four currencies in view at once.\n\nLIVE MID-MARKET RATES\nSee daily mid-market exchange rates from ExchangeRate-API with no markup. Refresh whenever you need an update, and keep your last saved rates available when you're offline.\n\nFOUR CURRENCIES, ONE BOARD\nEnter any amount and every card updates instantly. Set a home currency, add the currencies you actually use, and keep your selections on your device.\n\nLOCAL CURRENCY DETECTION\nDasnomad can detect your approximate location on startup, or use your device location when you tap \"Use my location\", to suggest the local currency and show local time and weather. Location is optional and can be denied at any time.\n\nMADE FOR TRAVEL\nHome and current-location clocks, typical mains power information, weather, and a compact layout make it easy to check what you need at a glance.\n\nPRIVATE BY DESIGN\nNo account, no ads, no analytics, no tracking. Your preferences stay on your device. See the privacy policy for details about the third-party rate, location, and weather services.\n\nRates are for informational purposes only and are not financial advice.",
     "appIcon": "assets/icon-512.png",
     "featureGraphic": "assets/feature-graphic.png",
     "screenshots": {
@@ -58,10 +58,10 @@
     }
   },
   "appStore": {
-    "name": "Curnomad",
+    "name": "Dasnomad",
     "subtitle": "Calm, offline currency rates",
     "promotionalText": "Live mid-market rates, four currencies in view, local currency detection, and a travel-friendly design. Works offline with your last saved rates.",
-    "description": "Curnomad is a calm, travel-friendly currency converter that keeps four currencies in view at once.\n\nLIVE MID-MARKET RATES\nSee daily mid-market exchange rates from ExchangeRate-API with no markup. Refresh whenever you need an update, and keep your last saved rates available when you're offline.\n\nFOUR CURRENCIES, ONE BOARD\nEnter any amount and every card updates instantly. Set a home currency, add the currencies you actually use, and keep your selections on your device.\n\nLOCAL CURRENCY DETECTION\nCurnomad can detect your approximate location on startup, or use your device location when you tap \"Use my location\", to suggest the local currency and show local time and weather. Location is optional and can be denied at any time.\n\nMADE FOR TRAVEL\nHome and current-location clocks, typical mains power information, weather, and a compact layout make it easy to check what you need at a glance.\n\nPRIVATE BY DESIGN\nNo account, no ads, no analytics, no tracking. Your preferences stay on your device. See the privacy policy for details about the third-party rate, location, and weather services.\n\nRates are for informational purposes only and are not financial advice.",
+    "description": "Dasnomad is a calm, travel-friendly currency converter that keeps four currencies in view at once.\n\nLIVE MID-MARKET RATES\nSee daily mid-market exchange rates from ExchangeRate-API with no markup. Refresh whenever you need an update, and keep your last saved rates available when you're offline.\n\nFOUR CURRENCIES, ONE BOARD\nEnter any amount and every card updates instantly. Set a home currency, add the currencies you actually use, and keep your selections on your device.\n\nLOCAL CURRENCY DETECTION\nDasnomad can detect your approximate location on startup, or use your device location when you tap \"Use my location\", to suggest the local currency and show local time and weather. Location is optional and can be denied at any time.\n\nMADE FOR TRAVEL\nHome and current-location clocks, typical mains power information, weather, and a compact layout make it easy to check what you need at a glance.\n\nPRIVATE BY DESIGN\nNo account, no ads, no analytics, no tracking. Your preferences stay on your device. See the privacy policy for details about the third-party rate, location, and weather services.\n\nRates are for informational purposes only and are not financial advice.",
     "keywords": "currency,converter,exchange,rates,travel,offline,forex,money,calculator,cash,abroad",
     "screenshots": {
       "iphone69": [

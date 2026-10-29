@@ -3,32 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Curnomad v1.0 - Personal currency converter that keeps four currencies in view, detects your local currency, and converts with live exchange rates.">
+  <meta name="description" content="Da$Nomad v1.0 - Personal currency converter that keeps four currencies in view, detects your local currency, and converts with live exchange rates.">
   <meta name="theme-color" content="#F2EFE7">
   <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Curnomad">
-  <link rel="manifest" href="/curnomad/manifest.webmanifest">
-  <link rel="apple-touch-icon" href="/curnomad/assets/icon-180-DY5ujEx6.png?v=20251028">
-  <link rel="icon" href="/curnomad/assets/icon-192-s4yQl-NX.png?v=20251028" type="image/png" sizes="192x192">
-  <link rel="shortcut icon" href="/curnomad/assets/icon-192-s4yQl-NX.png?v=20251028">
-  <link rel="icon" href="/curnomad/assets/icon-DJJc6637.svg?v=20251028" type="image/svg+xml">
-  <title>Curnomad v1.0 - Personal currency converter</title>
-  <script type="module" crossorigin src="/curnomad/assets/index-BjOampVk.js"></script>
-  <link rel="stylesheet" crossorigin href="/curnomad/assets/index-bN0_OC5F.css">
+  <meta name="apple-mobile-web-app-title" content="Dasnomad">
+  <link rel="manifest" href="/dasnomad/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/dasnomad/assets/icon-180-DY5ujEx6.png?v=20251028">
+  <link rel="icon" href="/dasnomad/assets/icon-192-s4yQl-NX.png?v=20251028" type="image/png" sizes="192x192">
+  <link rel="shortcut icon" href="/dasnomad/assets/icon-192-s4yQl-NX.png?v=20251028">
+  <link rel="icon" href="/dasnomad/assets/icon-DJJc6637.svg?v=20251028" type="image/svg+xml">
+  <title>Da$Nomad v1.0 - Personal currency converter</title>
+  <script type="module" crossorigin src="/dasnomad/assets/index-BGbt1Y_f.js"></script>
+  <link rel="stylesheet" crossorigin href="/dasnomad/assets/index-B4vXUpes.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to converter</a>
 
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="./" aria-label="cur$nomad home">
+      <a class="brand" href="./" aria-label="Da$Nomad home">
         <span class="brand-mark" aria-hidden="true">
-          <img src="/curnomad/assets/icon-192-s4yQl-NX.png?v=20251028" alt="" style="width:25px;height:25px;border-radius:6px;display:block;">
+          <img src="/dasnomad/assets/icon-192-s4yQl-NX.png?v=20251028" alt="" style="width:25px;height:25px;border-radius:6px;display:block;">
         </span>
-        <span class="brand-name">cur<span class="brand-dollar">$</span>nomad</span>
+        <span class="brand-name">Da<span class="brand-dollar">$</span>Nomad</span>
       </a>
 
       <div class="topbar-actions">
@@ -36,7 +36,7 @@
           <span class="connection-dot" aria-hidden="true"></span>
           <span id="connectionText">Live rates</span>
         </span>
-        <button class="icon-button install-button" id="installButton" type="button" aria-label="Install Curnomad" hidden>
+        <button class="icon-button install-button" id="installButton" type="button" aria-label="Install Da$Nomad" hidden>
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -63,7 +63,7 @@
             <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Personal currency desk</p>
             <h1 id="pageTitle">Every currency, <em>one glance.</em></h1>
           </div>
-          <div class="rate-meta" id="rateMeta" aria-live="polite">
+          <div class="rate-meta" id="rateMeta" aria-live="polite" style="display:none">
             <span class="rate-meta-label">Exchange rates</span>
             <span class="rate-meta-value" id="rateMetaValue">Connecting…</span>
           </div>
@@ -106,6 +106,13 @@
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M20 11a8 8 0 0 0-14.6-4.7L3 9m0 0V4m0 5h5M4 13a8 8 0 0 0 14.6 4.7L21 15m0 0v5m0-5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
+            </button>
+            <button class="locate-button locate-button--compact" id="setHomeLocationButton" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 12h3m12 0h3M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+              <span>Set home location</span>
             </button>
             <button class="locate-button locate-button--compact" id="locateButton" type="button">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -172,7 +179,7 @@
       <div class="dialog-head">
         <div>
           <p class="eyebrow">About</p>
-          <h2 id="aboutDialogTitle">Curnomad v1.0</h2>
+          <h2 id="aboutDialogTitle">Da$Nomad v1.0</h2>
         </div>
         <button class="icon-button icon-button--round" id="closeAboutDialog" type="button" aria-label="Close about dialog">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -249,12 +256,28 @@
   </dialog>
 
   <div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-atomic="false"></div>
-  <div class="offline-banner" id="offlineBanner" hidden>
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M3 3l18 18M8.6 8.6a10 10 0 0 1 12.3 1.5M5.1 10.1a10 10 0 0 0 2.17 1.4M8.5 15.5a5 5 0 0 1 5.6 1M12 19h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span>You're offline — showing your last saved rates.</span>
-  </div>
+  <div class="offline-banner" id="offlineBanner" hidden></div>
+
+  <dialog class="power-dialog" id="powerDialog" aria-labelledby="powerDialogTitle">
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">Power outlets</p>
+          <h2 id="powerDialogTitle">Outlets</h2>
+        </div>
+        <button class="icon-button icon-button--round" id="closePowerDialog" type="button" aria-label="Close power dialog">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-content">
+        <p class="settings-text" id="powerDialogLocation"></p>
+        <div class="power-dialog-plugs" id="powerDialogPlugs"></div>
+        <p class="settings-text" id="powerDialogSpecs"></p>
+      </div>
+    </div>
+  </dialog>
 
 </body>
 </html>

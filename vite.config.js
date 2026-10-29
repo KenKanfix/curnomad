@@ -4,7 +4,7 @@ export default defineConfig(({ mode }) => {
   const native = mode === 'capacitor';
 
   return {
-    base: native ? './' : '/curnomad/',
+    base: native ? './' : '/dasnomad/',
     build: {
       outDir: native ? 'dist-native' : 'dist',
       assetsDir: 'assets',

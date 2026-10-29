@@ -47,7 +47,7 @@ function featureGraphicSvg() {
       <g transform="translate(232 250) scale(0.75) translate(-256 -256)">
         ${arrowPaths}
       </g>
-      <text x="420" y="215" fill="${brand.cream}" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700">Curnomad</text>
+      <text x="420" y="215" fill="${brand.cream}" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700">Da$Nomad</text>
       <text x="422" y="278" fill="${brand.lime}" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-style="italic">Every currency,</text>
       <text x="422" y="328" fill="${brand.lime}" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-style="italic">one glance.</text>
       <text x="422" y="390" fill="${brand.muted}" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="2">LIVE RATES  ·  LOCAL CURRENCY  ·  WORLD CLOCKS</text>

@@ -358,3 +358,42 @@ Status: Changes committed and pushed to `origin/main`; GitHub Pages deploy workf
 
 - The home currency picker still exists in code (`applyCurrency` with `type: "home"`) but is no longer reachable from the home card.
 - Slot 1 remains user-editable, but location detection re-forces it to the local currency on startup/update.
+
+## Session 2026-10-29 - Rebrand to Dasnomad
+
+Project: `C:\Users\tj2ng\My-Repo\CurNomad`
+Status: Full in-app/store rebrand applied; changes are uncommitted.
+
+### Completed
+
+- Renamed the visible in-app brand from `cur$nomad` to `Da$Nomad` in the header, document title, meta tags, About dialog, install prompts, toasts, privacy page, and feature graphic.
+- Changed the app/store name to `Dasnomad` in the manifest, Capacitor config, Android app label, iOS display name, and store listing.
+- Changed the native identity from `io.github.kenkanfix.curnomad` to `io.github.kenkanfix.dasnomad` in Android (`namespace`, `applicationId`, strings, `MainActivity` package path), iOS (`PRODUCT_BUNDLE_IDENTIFIER`, location purpose string), Capacitor, and the iOS workflow.
+- Updated `package.json`/`package-lock.json` name to `dasnomad-currency-converter`.
+- Bumped the service worker cache from `curnomad-v1.5.0` to `dasnomad-v1.5.1`.
+- Regenerated web assets with `npm run build` and `npm run build:native`, ran `npx cap sync`, and regenerated the feature graphic.
+- Rebuilt signed Android artifacts:
+  - `store/builds/Dasnomad-1.0.0-release.aab` - 6,690,191 bytes; SHA256 `0265326B5FCDA384660FFFBAC64B1A8F81F4A40B2AEE163F33D141CD1069703D`.
+  - `store/builds/Dasnomad-1.0.0-release.apk` - 6,984,931 bytes; SHA256 `94464A7CF89C064DA61300F12C92FAA48E396D88C0252F7E6D5A42E71BC05D8E`.
+  - APK package `io.github.kenkanfix.dasnomad`, label `Dasnomad`; AAB `jarsigner -verify` reports `jar verified`.
+  - Signing certificate is unchanged: `CN=Curnomad, O=KenKanfix, C=AU`, SHA256 `88b6620d999fcf9a9abeb1506b049803a46b6072e0efb6f4b619dd441c0e3cbf`.
+
+- Renamed the GitHub repo from `KenKanfix/curnomad` to `KenKanfix/dasnomad`; the local `origin` remote updated automatically. GitHub Pages now serves from `https://kenkanfix.github.io/dasnomad/`.
+- Updated the Vite base to `/dasnomad/` and the store privacy/support/marketing URLs plus the privacy-page issue link to the new repo.
+
+### Preserved intentionally
+
+- localStorage keys remain `roam.state.v1`, `roam.rates.v1`, `roam.home.v1`, `roam.weather.v1` to preserve saved user data.
+- The Android upload keystore and alias remain `curnomad` to preserve the signing identity.
+- Old `Curnomad-1.0.0` artifacts and historical entries above are left unchanged.
+
+### Build note
+
+- Gradle hit repeated `AccessDeniedException` errors moving transform workspaces on this machine. The build succeeded after pre-moving each `transforms\<hash>-<uuid>` directory to `transforms\<hash>` between retries; both `bundleRelease` and `assembleRelease` completed.
+
+### Remaining work
+
+- Create the new Apple App ID and provisioning profile for `io.github.kenkanfix.dasnomad`; the existing profile is tied to the old bundle ID. Run the iOS workflow on macOS/GitHub Actions.
+- Create the Google Play app under the new package name. If the old package was already registered, it cannot be changed.
+- Recapture store screenshots because the old screenshots show the `cur$nomad` wordmark.
+- Review `git status`; commit/push only with explicit approval.

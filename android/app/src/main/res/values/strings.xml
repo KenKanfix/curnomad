@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Curnomad</string>
-    <string name="title_activity_main">Curnomad</string>
-    <string name="package_name">io.github.kenkanfix.curnomad</string>
-    <string name="custom_url_scheme">io.github.kenkanfix.curnomad</string>
+    <string name="app_name">Dasnomad</string>
+    <string name="title_activity_main">Dasnomad</string>
+    <string name="package_name">io.github.kenkanfix.dasnomad</string>
+    <string name="custom_url_scheme">io.github.kenkanfix.dasnomad</string>
 </resources>
