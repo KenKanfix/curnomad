@@ -2,7 +2,7 @@
   "app": {
     "name": "Dasnomad",
     "bundleId": "io.github.kenkanfix.dasnomad",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "build": 1,
     "primaryLanguage": "en-US",
     "category": "Finance",

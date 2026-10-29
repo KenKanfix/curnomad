@@ -133,6 +133,32 @@
           <span>Mid-market rates update daily. Your selections stay on this device.</span>
         </p>
       </section>
+
+      <details class="local-tip" id="localTipCard" hidden>
+        <summary class="local-tip-summary">
+          <span class="local-tip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3.5 13.6 9l5.4 1.6-5.4 1.6L12 17.7l-1.6-5.5L5 10.6 10.4 9 12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M18.5 15.5 19.2 18l2.3.8-2.3.7-.7 2.5-.7-2.5-2.3-.7 2.3-.8.7-2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="local-tip-heading">
+            <span class="local-tip-label">Local tip</span>
+            <span class="local-tip-place" id="localTipPlace">—</span>
+          </span>
+          <svg class="local-tip-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="local-tip-body">
+          <p class="local-tip-text" id="localTipText"></p>
+          <p class="local-tip-meta">
+            <span>Source: <a id="localTipSource" href="#" target="_blank" rel="noopener noreferrer"></a></span>
+            <span aria-hidden="true">·</span>
+            <span id="localTipUpdated"></span>
+          </p>
+        </div>
+      </details>
     </main>
 
     <footer class="footer">

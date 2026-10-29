@@ -2,6 +2,7 @@ import { Capacitor } from "@capacitor/core";
 import { Geolocation } from "@capacitor/geolocation";
 import { SplashScreen } from "@capacitor/splash-screen";
 import { StatusBar, Style } from "@capacitor/status-bar";
+import { findLocalTip } from "./local-tips.js";
 
 const IS_NATIVE = Capacitor.isNativePlatform();
 
@@ -549,7 +550,8 @@ function cacheElements() {
     "dialogTitle", "closeDialog", "currencySearch", "searchClear",
     "currencyList", "toastRegion", "offlineBanner", "homeClockSub",
     "homeClockTime", "homeClockDate", "currentClockSub", "currentClockTime",
-    "currentClockDate",
+    "currentClockDate", "localTipCard", "localTipPlace", "localTipText",
+    "localTipSource", "localTipUpdated",
   ];
 
   ids.forEach((id) => {
@@ -1472,7 +1474,27 @@ function renderAll() {
   renderStatus();
   renderRateMeta();
   renderLocation();
+  renderLocalTip();
   populateHomeTimezoneSelect();
+}
+
+function renderLocalTip() {
+  const card = els.localTipCard;
+  if (!card) return;
+
+  const tip = findLocalTip(state.location);
+  if (!tip) {
+    card.hidden = true;
+    return;
+  }
+
+  const place = state.location.city || countryNameForCode(state.location.countryCode);
+  els.localTipPlace.textContent = place;
+  els.localTipText.textContent = tip.tip;
+  els.localTipSource.textContent = tip.source.label;
+  els.localTipSource.href = tip.source.url;
+  els.localTipUpdated.textContent = `Updated ${tip.updated}`;
+  card.hidden = false;
 }
 
 function renderCards() {

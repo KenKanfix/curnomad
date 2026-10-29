@@ -397,3 +397,29 @@ Status: Full in-app/store rebrand applied; changes are uncommitted.
 - Create the Google Play app under the new package name. If the old package was already registered, it cannot be changed.
 - Recapture store screenshots because the old screenshots show the `cur$nomad` wordmark.
 - Review `git status`; commit/push only with explicit approval.
+
+## Session 2026-10-29 - Local Tips Card
+
+Project: `C:\Users\tj2ng\My-Repo\CurNomad`
+Status: Local-tips data and bottom card UI implemented; changes are uncommitted.
+
+### Completed
+
+- Added `local-tips.js` with a versioned static dataset covering 24 cities plus country-level fallbacks, each with a tip, source link, and `updated` date.
+- Added location lookup by country and normalized city name, including near matches such as `Paris 01 Louvre` and `New York City`.
+- Added a collapsible "Local tip" details card below the conversion board (`index.html`, `styles.css`). It stays hidden until a location with tip data is available.
+- Wired `renderLocalTip()` into `renderAll()` and registered the new elements in `cacheElements()` (`app.js`).
+- Bumped the service worker cache from `dasnomad-v1.5.1` to `dasnomad-v1.6.0` in both `sw.js` and `public/sw.js`.
+- Set the product version to `0.1.0` in `package.json`, Android `versionName`, iOS `MARKETING_VERSION`, and `store/listing.json`; build numbers remain `1`.
+- Rebuilt the web output with `npm run build`.
+
+### Verification
+
+- `npm run check` passed.
+- `node --input-type=module` lookup checks passed for exact cities, partial city names, country fallback, and unknown countries.
+- `dist/index.html` contains the local-tip markup and the bundle includes the tips module.
+
+### Notes
+
+- Tips are static curated guidance, not live safety alerts or real-time scam reports.
+- Sources are official tourism boards and city/government sites; review links before publishing and refresh the dataset periodically.
