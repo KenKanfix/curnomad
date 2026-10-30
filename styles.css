@@ -582,6 +582,29 @@ main {
   color: #52621d;
 }
 
+.current-location-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+  color: #64742d;
+  font-size: 0.63rem;
+  font-weight: 740;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.current-location-label svg {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+}
+
+.current-location-label .target-location {
+  max-width: 130px;
+}
+
 .currency-main {
   display: flex;
   flex-direction: column;
@@ -1605,6 +1628,19 @@ main {
   min-width: 96px;
 }
 
+.notice-dialog {
+  width: min(440px, calc(100vw - 28px));
+}
+
+.notice-dialog .settings-content {
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+
+.notice-dialog .settings-text {
+  font-size: 0.9rem;
+}
+
 .dialog-shell {
   display: flex;
   flex-direction: column;
@@ -2139,6 +2175,10 @@ body.is-offline .connection-pill {
 
   .target-location {
     display: none;
+  }
+
+  .current-location-label {
+    font-size: 0.56rem;
   }
 
   .currency-trigger--small {

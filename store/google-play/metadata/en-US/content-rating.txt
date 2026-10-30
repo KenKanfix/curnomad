@@ -1,0 +1,12 @@
+CONTENT RATING QUESTIONNAIRE NOTES
+
+- Category: Utility / Finance / Travel.
+- Violence, sexuality, nudity, language, controlled substances, gambling: No.
+- User-generated content or social features: No.
+- Shares user location: Yes, optional and user initiated.
+- Shares personal information: No account or profile; optional location only.
+- Digital purchases: No.
+- Ads: No.
+- Expected rating: Everyone / PEGI 3 / ESRB E.
+
+Review the final answers in Play Console. This file is a guide, not an uploaded asset.

@@ -1,0 +1,23 @@
+APP PRIVACY ANSWERS
+
+Does your app collect data? Yes.
+
+Data Used to Track You
+- None.
+
+Data Linked to You
+- None.
+
+Data Not Linked to You
+- Coarse Location: App Functionality, optional.
+- Precise Location: App Functionality, optional.
+
+Tracking
+- The app does not track users across apps or websites.
+- No advertising SDKs or analytics SDKs.
+
+Notes
+- Location permission is optional and only used to detect the local currency,
+  reverse geocode the approximate area, and show local weather.
+- The app has no account or sign-in.
+- Preferences and cached data stay on the device.

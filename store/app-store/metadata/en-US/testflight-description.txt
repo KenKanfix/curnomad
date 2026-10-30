@@ -1,0 +1,1 @@
+Dasnomad is a calm, travel-friendly currency converter with live mid-market rates, four currencies in view, optional local currency detection, local tips, and offline access to your last saved rates. Please report bugs and confusing screens through TestFlight feedback.

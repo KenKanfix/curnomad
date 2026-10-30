@@ -1,0 +1,1 @@
+Live mid-market rates, four currencies in view, local currency detection, and a travel-friendly design. Works offline with your last saved rates.

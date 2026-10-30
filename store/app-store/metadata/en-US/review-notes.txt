@@ -1,0 +1,1 @@
+No account or sign-in is required. Location permission is optional and only used to detect the local currency and show local weather. Denying it leaves the converter fully usable.

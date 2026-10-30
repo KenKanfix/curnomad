@@ -1,4 +1,4 @@
-const VERSION = "dasnomad-v1.6.0";
+const VERSION = "dasnomad-v1.6.2";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RATE_CACHE = `${VERSION}-rates`;
 const SCOPE = self.registration.scope;

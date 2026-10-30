@@ -1,0 +1,31 @@
+DATA SAFETY ANSWERS
+
+Does your app collect or share any of the required user data types? Yes.
+
+Location
+- Approximate location: collected, optional, shared, app functionality, not stored by developer, encrypted in transit.
+- Precise location: collected, optional, shared, app functionality, not stored by developer, encrypted in transit.
+
+Personal info
+- None.
+
+Financial info
+- None. The app does not process payments.
+
+Messages, photos, videos, audio, files, contacts, calendar, health, web browsing
+- None.
+
+App activity / app info and performance / device or other IDs
+- None collected by the developer.
+
+Data handling
+- Data is not sold.
+- Data is not used for advertising or tracking.
+- Location is sent to BigDataCloud for reverse geocoding and may be sent to Open-Meteo for weather.
+- Exchange rates are requested from ExchangeRate-API without personal identifiers.
+- Preferences and cached data stay on the device.
+- No account exists, so no account deletion flow is required. Users can clear app storage or uninstall the app to remove local data.
+
+Security
+- Data is encrypted in transit using HTTPS.
+- The developer does not operate a server that stores user data.

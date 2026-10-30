@@ -1,0 +1,18 @@
+Dasnomad is a calm, travel-friendly currency converter that keeps four currencies in view at once.
+
+LIVE MID-MARKET RATES
+See daily mid-market exchange rates from ExchangeRate-API with no markup. Refresh whenever you need an update, and keep your last saved rates available when you're offline.
+
+FOUR CURRENCIES, ONE BOARD
+Enter any amount and every card updates instantly. Set a home currency, add the currencies you actually use, and keep your selections on your device.
+
+LOCAL CURRENCY DETECTION
+Dasnomad can detect your approximate location on startup, or use your device location when you tap "Use my location", to suggest the local currency and show local time and weather. Location is optional and can be denied at any time.
+
+MADE FOR TRAVEL
+Home and current-location clocks, typical mains power information, weather, and a compact layout make it easy to check what you need at a glance.
+
+PRIVATE BY DESIGN
+No account, no ads, no analytics, no tracking. Your preferences stay on your device. See the privacy policy for details about the third-party rate, location, and weather services.
+
+Rates are for informational purposes only and are not financial advice.

@@ -551,7 +551,9 @@ function cacheElements() {
     "currencyList", "toastRegion", "offlineBanner", "homeClockSub",
     "homeClockTime", "homeClockDate", "currentClockSub", "currentClockTime",
     "currentClockDate", "localTipCard", "localTipPlace", "localTipText",
-    "localTipSource", "localTipUpdated",
+    "localTipSource", "localTipUpdated", "slotNoticeDialog", "slotNoticeEyebrow",
+    "slotNoticeTitle", "slotNoticeText", "slotNoticeAction",
+    "closeSlotNoticeDialog", "slotNoticeDismiss",
   ];
 
   ids.forEach((id) => {
@@ -854,6 +856,21 @@ function bindEvents() {
     });
   }
 
+  if (els.closeSlotNoticeDialog && els.slotNoticeDialog) {
+    els.closeSlotNoticeDialog.addEventListener("click", () => closeSlotNoticeDialog());
+    els.slotNoticeDialog.addEventListener("click", (event) => {
+      if (event.target === els.slotNoticeDialog) closeSlotNoticeDialog();
+    });
+  }
+
+  if (els.slotNoticeDismiss) {
+    els.slotNoticeDismiss.addEventListener("click", () => closeSlotNoticeDialog());
+  }
+
+  if (els.slotNoticeAction) {
+    els.slotNoticeAction.addEventListener("click", () => runSlotNoticeAction());
+  }
+
   if (els.useCurrentLocationAsHome) {
     els.useCurrentLocationAsHome.addEventListener("click", () => {
       useCurrentLocationAsHome();
@@ -930,11 +947,11 @@ function bindEvents() {
     if (!button) return;
     const slot = Number(button.dataset.pickSlot);
     if (!Number.isInteger(slot)) return;
-    if (slot === 0) {
+    if (slot === 0 || slot === 1) {
+      openSlotNotice(slot);
       return;
-    } else {
-      openPicker({ type: "target", index: slot - 1 });
     }
+    openPicker({ type: "target", index: slot - 1 });
   });
 
   els.closeDialog.addEventListener("click", closeDialog);
@@ -1176,6 +1193,55 @@ function closeAboutDialog() {
     els.aboutDialog.close();
   } else {
     els.aboutDialog.removeAttribute("open");
+  }
+}
+
+function openSlotNotice(slot) {
+  if (!els.slotNoticeDialog) return;
+
+  const isHome = slot === 0;
+  const code = isHome ? state.home : state.targets[0]?.currency || state.home;
+  const name = getCurrencyName(code);
+
+  if (els.slotNoticeEyebrow) {
+    els.slotNoticeEyebrow.textContent = isHome ? "Home currency" : "Current location";
+  }
+  if (els.slotNoticeTitle) {
+    els.slotNoticeTitle.textContent = `${code} · ${name}`;
+  }
+  if (els.slotNoticeText) {
+    els.slotNoticeText.textContent = isHome
+      ? "This card uses your home currency. Set home location to set this currency."
+      : "This card follows your current location. Update location to set this currency.";
+  }
+  if (els.slotNoticeAction) {
+    els.slotNoticeAction.textContent = isHome ? "Set home location" : "Update location";
+    els.slotNoticeAction.dataset.slot = String(slot);
+  }
+
+  if (typeof els.slotNoticeDialog.showModal === "function") {
+    els.slotNoticeDialog.showModal();
+  } else {
+    els.slotNoticeDialog.setAttribute("open", "");
+  }
+}
+
+function closeSlotNoticeDialog() {
+  if (!els.slotNoticeDialog) return;
+  if (els.slotNoticeDialog.open && typeof els.slotNoticeDialog.close === "function") {
+    els.slotNoticeDialog.close();
+  } else {
+    els.slotNoticeDialog.removeAttribute("open");
+  }
+}
+
+function runSlotNoticeAction() {
+  const slot = Number(els.slotNoticeAction?.dataset.slot);
+  closeSlotNoticeDialog();
+  if (slot === 0) {
+    window.requestAnimationFrame(() => openHomeSettingsDialog());
+  } else if (slot === 1) {
+    detectLocation({ precise: true, silent: false });
   }
 }
 
@@ -1538,7 +1604,7 @@ function renderCards() {
             type="button"
             data-pick-slot="${slot.index}"
             aria-haspopup="dialog"
-            aria-label="Change currency for ${escapeHTML(getCurrencyCountry(slot.code))}, currently ${escapeHTML(code)} — ${escapeHTML(name)}"
+            aria-label="${escapeHTML(slotTriggerLabel(slot))}"
           >
             <span class="currency-symbol" aria-hidden="true">${escapeHTML(symbol)}</span>
             <span>${escapeHTML(code)}</span>
@@ -1581,13 +1647,26 @@ function tagLabel(slot) {
   return getCurrencyCountry(slot.code);
 }
 
+function slotTriggerLabel(slot) {
+  const name = getCurrencyName(slot.code);
+  if (slot.isHome) {
+    return `Home currency ${slot.code}, ${name}. Set home location to change this currency.`;
+  }
+  if (slot.isNearby) {
+    return `Current location currency ${slot.code}, ${name}. Update location to change this currency.`;
+  }
+  return `Change currency for ${getCurrencyCountry(slot.code)}, currently ${slot.code} — ${name}`;
+}
+
 function slotTitle(slot) {
   const country = getCurrencyCountry(slot.code);
   const currency = getCurrencyName(slot.code);
   if (slot.isHome) return `${country} · ${currency} · home currency`;
   if (slot.isNearby) {
-    const place = state.location ? ` Detected near ${locationShort()}.` : "";
-    return `${country} · ${currency} · nearby currency.${place}`;
+    const place = state.location
+      ? ` Current location: ${locationShort()}.`
+      : " Current location not detected.";
+    return `${country} · ${currency}.${place}`;
   }
   return `${country} · ${currency}`;
 }
@@ -1601,23 +1680,22 @@ function slotTagMarkup(slot) {
   } else {
     icon = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5M12 3.5C9.6 6 8.4 8.8 8.4 12s1.2 6 3.6 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
   }
-  const locationMarkup = slot.isNearby ? ` ${nearbyLocationMarkup()}` : "";
-  return `${icon}<span>${escapeHTML(tagLabel(slot))}</span>${locationMarkup}`;
+  return `${icon}<span>${escapeHTML(tagLabel(slot))}</span>`;
 }
 
 function cardFootMarkup(slot, rate, pending) {
+  const currentLocation = slot.isNearby ? currentLocationMarkup() : "";
   if (slot.isHome) {
     return `<p class="rate-line">Base currency · <strong>${escapeHTML(state.home)}</strong></p>
       <p class="inverse-rate">Edits sync all cards</p>`;
   }
   if (slot.isNearby && slot.code === state.home) {
-    return `<p class="rate-line">Same as your home currency</p>
-      <p class="inverse-rate">Detected local currency</p>`;
+    return `${currentLocation}<p class="rate-line">Same as your home currency</p>`;
   }
   if (!rate) {
-    return `<p class="rate-line"><span class="rate-pending">${pending ? "Fetching rate…" : "Rate unavailable"}</span></p>`;
+    return `${currentLocation}<p class="rate-line"><span class="rate-pending">${pending ? "Fetching rate…" : "Rate unavailable"}</span></p>`;
   }
-  return `<p class="rate-line">1 ${escapeHTML(state.home)} = <strong>${formatRate(rate)}</strong> ${escapeHTML(slot.code)}</p>
+  return `${currentLocation}<p class="rate-line">1 ${escapeHTML(state.home)} = <strong>${formatRate(rate)}</strong> ${escapeHTML(slot.code)}</p>
     <p class="inverse-rate">1 ${escapeHTML(slot.code)} = ${formatRate(1 / rate)} ${escapeHTML(state.home)}</p>`;
 }
 
@@ -1642,12 +1720,13 @@ function updateCardAmounts(activeSlot) {
   });
 }
 
-function nearbyLocationMarkup() {
-  if (!state.location) {
-    return `<span class="target-location sr-only">Use location to detect the local currency.</span>`;
-  }
-  const place = locationShort();
-  return `<span class="target-location sr-only">Local location: ${escapeHTML(place)}</span>`;
+function currentLocationMarkup() {
+  const place = state.location ? locationShort() : "Not detected";
+  return `<p class="current-location-label">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s6.5-5.7 6.5-11a6.5 6.5 0 1 0-13 0C5.5 15.3 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.1" stroke="currentColor" stroke-width="1.8"/></svg>
+    <span>Current location</span>
+    <span class="target-location">· ${escapeHTML(place)}</span>
+  </p>`;
 }
 
 function renderLocation() {
@@ -2677,7 +2756,7 @@ function installPromptSetup() {
     const choice = await state.installPrompt.userChoice;
     if (choice.outcome === "accepted") {
       els.installButton.hidden = true;
-      showToast("Da$Nomad was added to your device.", "success");
+      showToast("Dasnomad was added to your device.", "success");
     }
     state.installPrompt = null;
   });
@@ -2685,7 +2764,7 @@ function installPromptSetup() {
   window.addEventListener("appinstalled", () => {
     state.installPrompt = null;
     els.installButton.hidden = true;
-    showToast("Da$Nomad installed. It now works offline.", "success");
+    showToast("Dasnomad installed. It now works offline.", "success");
   });
 }
 
